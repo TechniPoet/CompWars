@@ -4,6 +4,7 @@ using System;
 
 public class GameMono : MonoBehaviour, EngineInterface
 {
+	[System.NonSerialized]
 	public int gameId;
 
 	public virtual void JUpdate(){}

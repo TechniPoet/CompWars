@@ -1,0 +1,768 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99e071ed3c424e16bf543c19f92bf91, type: 3}
+  m_Name: SoundBank
+  m_EditorClassIdentifier: 
+  _sampleRate: 44100
+  _sampleInfos:
+  - _name: paino_1_A
+    _midiCode: 0
+    _pathInResources: Piano/paino_1_A
+    _numChannels: 2
+    _samplesPerChannel: 61848
+    _guid: d329986c607626f4188f9134f6afc21d
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_1_As
+    _midiCode: 0
+    _pathInResources: Piano/paino_1_As
+    _numChannels: 2
+    _samplesPerChannel: 61976
+    _guid: 3db640385ebe10649af0730daee3a20a
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_1_B
+    _midiCode: 0
+    _pathInResources: Piano/paino_1_B
+    _numChannels: 2
+    _samplesPerChannel: 61940
+    _guid: fceca83b66595a04abb343384ca4a6b4
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_1_C
+    _midiCode: 0
+    _pathInResources: Piano/paino_1_C
+    _numChannels: 2
+    _samplesPerChannel: 61872
+    _guid: 12cf0f61d767fa24a8f678cdbdeb04b2
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_1_Cs
+    _midiCode: 0
+    _pathInResources: Piano/paino_1_Cs
+    _numChannels: 2
+    _samplesPerChannel: 61936
+    _guid: 17e1d8a133eec9341a9ae20d7ce317e0
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_1_D
+    _midiCode: 0
+    _pathInResources: Piano/paino_1_D
+    _numChannels: 2
+    _samplesPerChannel: 62004
+    _guid: 7bdb0a5670d98414a9e3c861b0d244a3
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_1_Ds
+    _midiCode: 0
+    _pathInResources: Piano/paino_1_Ds
+    _numChannels: 2
+    _samplesPerChannel: 62004
+    _guid: 026a096ba51f11f44a562f8680334572
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_1_E
+    _midiCode: 0
+    _pathInResources: Piano/paino_1_E
+    _numChannels: 2
+    _samplesPerChannel: 61876
+    _guid: a312344a6b986764896497566b72db23
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_1_F
+    _midiCode: 0
+    _pathInResources: Piano/paino_1_F
+    _numChannels: 2
+    _samplesPerChannel: 61936
+    _guid: 38f4763d1c5ca9e4c88b896cbfe1a799
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_1_Fs
+    _midiCode: 0
+    _pathInResources: Piano/paino_1_Fs
+    _numChannels: 2
+    _samplesPerChannel: 61848
+    _guid: e9ff1b52e1c50a14db740760aef7614b
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_1_G
+    _midiCode: 0
+    _pathInResources: Piano/paino_1_G
+    _numChannels: 2
+    _samplesPerChannel: 62011
+    _guid: 85739a0f13badbd44900fd1c6a72b729
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_1_Gs
+    _midiCode: 0
+    _pathInResources: Piano/paino_1_Gs
+    _numChannels: 2
+    _samplesPerChannel: 61916
+    _guid: 2c37e48bdcf892e45b16a5a59b532da8
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_2_A
+    _midiCode: 0
+    _pathInResources: Piano/paino_2_A
+    _numChannels: 2
+    _samplesPerChannel: 61984
+    _guid: a154921d367ddb348bdb91bee44b1a90
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_2_As
+    _midiCode: 0
+    _pathInResources: Piano/paino_2_As
+    _numChannels: 2
+    _samplesPerChannel: 61852
+    _guid: 5b03f54d52d7ff64db8d188a64d73ea3
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_2_B
+    _midiCode: 0
+    _pathInResources: Piano/paino_2_B
+    _numChannels: 2
+    _samplesPerChannel: 61924
+    _guid: ed1b9c9a447d31b42b475cf7c0d1fde0
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_2_C
+    _midiCode: 0
+    _pathInResources: Piano/paino_2_C
+    _numChannels: 2
+    _samplesPerChannel: 61992
+    _guid: 202feab7b97b8784b96033f69e9cf3fe
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_2_Cs
+    _midiCode: 0
+    _pathInResources: Piano/paino_2_Cs
+    _numChannels: 2
+    _samplesPerChannel: 62000
+    _guid: fdc729530a355f84ea2855775736eb33
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_2_D
+    _midiCode: 0
+    _pathInResources: Piano/paino_2_D
+    _numChannels: 2
+    _samplesPerChannel: 62008
+    _guid: 04f5832178281c441b4d1d83803f5dd8
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_2_Ds
+    _midiCode: 0
+    _pathInResources: Piano/paino_2_Ds
+    _numChannels: 2
+    _samplesPerChannel: 61944
+    _guid: 09228056a61d01841b8605cf535678e3
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_2_E
+    _midiCode: 0
+    _pathInResources: Piano/paino_2_E
+    _numChannels: 2
+    _samplesPerChannel: 61876
+    _guid: ab015f22bfc33f747b5583c85875d9f3
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_2_F
+    _midiCode: 0
+    _pathInResources: Piano/paino_2_F
+    _numChannels: 2
+    _samplesPerChannel: 61908
+    _guid: 46bc07522d3f97747bb42f0975da9d3c
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_2_Fs
+    _midiCode: 0
+    _pathInResources: Piano/paino_2_Fs
+    _numChannels: 2
+    _samplesPerChannel: 62043
+    _guid: 298e83a84ae74ff4c8902dc90e57f869
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_2_G
+    _midiCode: 0
+    _pathInResources: Piano/paino_2_G
+    _numChannels: 2
+    _samplesPerChannel: 61944
+    _guid: 9167c15820cccbd48820085b76ed726e
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_2_Gs
+    _midiCode: 0
+    _pathInResources: Piano/paino_2_Gs
+    _numChannels: 2
+    _samplesPerChannel: 61956
+    _guid: 8b9c89b4346bf354f84b299fe452aec1
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_3_A
+    _midiCode: 0
+    _pathInResources: Piano/paino_3_A
+    _numChannels: 2
+    _samplesPerChannel: 61956
+    _guid: 8f4700713d525704790bfcef49b468e7
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_3_As
+    _midiCode: 0
+    _pathInResources: Piano/paino_3_As
+    _numChannels: 2
+    _samplesPerChannel: 61896
+    _guid: 0a590b7983695c243b7cd087141043ab
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_3_B
+    _midiCode: 0
+    _pathInResources: Piano/paino_3_B
+    _numChannels: 2
+    _samplesPerChannel: 61951
+    _guid: 1eba81ec24d8f6b4297f59d60e1bd437
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_3_C
+    _midiCode: 0
+    _pathInResources: Piano/paino_3_C
+    _numChannels: 2
+    _samplesPerChannel: 61912
+    _guid: eac7692c802567f4fae6bce0f64fc6aa
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_3_Cs
+    _midiCode: 0
+    _pathInResources: Piano/paino_3_Cs
+    _numChannels: 2
+    _samplesPerChannel: 61944
+    _guid: 92c1327759246bf4db49eb1ea36ee573
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_3_D
+    _midiCode: 0
+    _pathInResources: Piano/paino_3_D
+    _numChannels: 2
+    _samplesPerChannel: 61884
+    _guid: b73ceaf0592fc01498f2822a174e0dff
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_3_Ds
+    _midiCode: 0
+    _pathInResources: Piano/paino_3_Ds
+    _numChannels: 2
+    _samplesPerChannel: 62004
+    _guid: 3210ad0847718c14da346953bc9e20c3
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_3_E
+    _midiCode: 0
+    _pathInResources: Piano/paino_3_E
+    _numChannels: 2
+    _samplesPerChannel: 61852
+    _guid: 65e79aa30c540ec4baaf5b9fa6154440
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_3_F
+    _midiCode: 0
+    _pathInResources: Piano/paino_3_F
+    _numChannels: 2
+    _samplesPerChannel: 62000
+    _guid: 6fce3dad5ed34e540b6acb317ab263d1
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_3_Fs
+    _midiCode: 0
+    _pathInResources: Piano/paino_3_Fs
+    _numChannels: 2
+    _samplesPerChannel: 61896
+    _guid: 39680ddd602c24e488180c9736f186af
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_3_G
+    _midiCode: 0
+    _pathInResources: Piano/paino_3_G
+    _numChannels: 2
+    _samplesPerChannel: 61951
+    _guid: 79bc9e91cf73de244b2c6a66c509aee4
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_3_Gs
+    _midiCode: 0
+    _pathInResources: Piano/paino_3_Gs
+    _numChannels: 2
+    _samplesPerChannel: 61855
+    _guid: 2de87fbbfefb0c14895669848eb8b6b6
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_4_A
+    _midiCode: 0
+    _pathInResources: Piano/paino_4_A
+    _numChannels: 2
+    _samplesPerChannel: 61880
+    _guid: 1f2972c738bbbf74aa1e842dca41dc28
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_4_As
+    _midiCode: 0
+    _pathInResources: Piano/paino_4_As
+    _numChannels: 2
+    _samplesPerChannel: 61780
+    _guid: 7953f4843a60a954f9072278d1745485
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_4_B
+    _midiCode: 0
+    _pathInResources: Piano/paino_4_B
+    _numChannels: 2
+    _samplesPerChannel: 61979
+    _guid: adfb5d315cf23aa438fc839c1f7f1eb1
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_4_C
+    _midiCode: 0
+    _pathInResources: Piano/paino_4_C
+    _numChannels: 2
+    _samplesPerChannel: 61880
+    _guid: c78add98c04ddce4aa99c41eb8117eec
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_4_Cs
+    _midiCode: 0
+    _pathInResources: Piano/paino_4_Cs
+    _numChannels: 2
+    _samplesPerChannel: 61855
+    _guid: e39cb1a88704d224b90e2862e656fbcf
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_4_D
+    _midiCode: 0
+    _pathInResources: Piano/paino_4_D
+    _numChannels: 2
+    _samplesPerChannel: 61919
+    _guid: c938edb4fbaa59e41a9801d195a6bc8e
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_4_Ds
+    _midiCode: 0
+    _pathInResources: Piano/paino_4_Ds
+    _numChannels: 2
+    _samplesPerChannel: 61872
+    _guid: d462042fe1906004e9af726c2708a039
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_4_E
+    _midiCode: 0
+    _pathInResources: Piano/paino_4_E
+    _numChannels: 2
+    _samplesPerChannel: 61887
+    _guid: f9b81c8153045c94bb8cb59c11c6d444
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_4_F
+    _midiCode: 0
+    _pathInResources: Piano/paino_4_F
+    _numChannels: 2
+    _samplesPerChannel: 61884
+    _guid: 2a33be2c016896f4382c1a508fa59d40
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_4_Fs
+    _midiCode: 0
+    _pathInResources: Piano/paino_4_Fs
+    _numChannels: 2
+    _samplesPerChannel: 61864
+    _guid: 024731f5f6d54a3439c4dc5dadf69ded
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_4_G
+    _midiCode: 0
+    _pathInResources: Piano/paino_4_G
+    _numChannels: 2
+    _samplesPerChannel: 61908
+    _guid: c06ac78b8f7d8cb41b1b1de4490b09bb
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_4_Gs
+    _midiCode: 0
+    _pathInResources: Piano/paino_4_Gs
+    _numChannels: 2
+    _samplesPerChannel: 61852
+    _guid: 72bb832da8265514a8c1e5845c357542
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_5_A
+    _midiCode: 0
+    _pathInResources: Piano/paino_5_A
+    _numChannels: 2
+    _samplesPerChannel: 61948
+    _guid: 5b65bc2f8d08ba547ac4fe088399801b
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_5_As
+    _midiCode: 0
+    _pathInResources: Piano/paino_5_As
+    _numChannels: 2
+    _samplesPerChannel: 62011
+    _guid: 0c1714c98a0f54a4f9ba6b465a9c5517
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_5_B
+    _midiCode: 0
+    _pathInResources: Piano/paino_5_B
+    _numChannels: 2
+    _samplesPerChannel: 61979
+    _guid: 88601b0a0078dbe4699eeb5b5237cff6
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_5_C
+    _midiCode: 0
+    _pathInResources: Piano/paino_5_C
+    _numChannels: 2
+    _samplesPerChannel: 61896
+    _guid: 2ae1490a60b8c7c44bb0bf2691b6d099
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_5_Cs
+    _midiCode: 0
+    _pathInResources: Piano/paino_5_Cs
+    _numChannels: 2
+    _samplesPerChannel: 62008
+    _guid: 10579171289438f4ca7565f538bac0d0
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_5_D
+    _midiCode: 0
+    _pathInResources: Piano/paino_5_D
+    _numChannels: 2
+    _samplesPerChannel: 61968
+    _guid: 54ae7fcd9f2cfca4592dcb7f7f4b6511
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_5_Ds
+    _midiCode: 0
+    _pathInResources: Piano/paino_5_Ds
+    _numChannels: 2
+    _samplesPerChannel: 61928
+    _guid: c3023a0088524154697b2afa0c157187
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_5_E
+    _midiCode: 0
+    _pathInResources: Piano/paino_5_E
+    _numChannels: 2
+    _samplesPerChannel: 62008
+    _guid: 62eee750e2e52b0458edb9523bfab4e0
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_5_F
+    _midiCode: 0
+    _pathInResources: Piano/paino_5_F
+    _numChannels: 2
+    _samplesPerChannel: 62011
+    _guid: 9134431ffe4aa5a4eafb37d014763267
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_5_Fs
+    _midiCode: 0
+    _pathInResources: Piano/paino_5_Fs
+    _numChannels: 2
+    _samplesPerChannel: 62016
+    _guid: 34a2573e0f8384c4d9e040bfeab9ff4e
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_5_G
+    _midiCode: 0
+    _pathInResources: Piano/paino_5_G
+    _numChannels: 2
+    _samplesPerChannel: 62028
+    _guid: 8941f62d56ed64e49b0e9108968e3870
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_5_Gs
+    _midiCode: 0
+    _pathInResources: Piano/paino_5_Gs
+    _numChannels: 2
+    _samplesPerChannel: 62011
+    _guid: c8af73dd09655a64cb641bf85328d41d
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_6_A
+    _midiCode: 0
+    _pathInResources: Piano/paino_6_A
+    _numChannels: 2
+    _samplesPerChannel: 62011
+    _guid: a7e5f2e7004f4f241a8dbeb5ca02b618
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_6_As
+    _midiCode: 0
+    _pathInResources: Piano/paino_6_As
+    _numChannels: 2
+    _samplesPerChannel: 62004
+    _guid: 8c293d9b23663864092c4f02d8ef60d3
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_6_B
+    _midiCode: 0
+    _pathInResources: Piano/paino_6_B
+    _numChannels: 2
+    _samplesPerChannel: 62011
+    _guid: 542185f605caaaa48b4ab2849b5fe038
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_6_C
+    _midiCode: 0
+    _pathInResources: Piano/paino_6_C
+    _numChannels: 2
+    _samplesPerChannel: 62011
+    _guid: 0abcafe35da0c6647ab8e422252e10b0
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_6_Cs
+    _midiCode: 0
+    _pathInResources: Piano/paino_6_Cs
+    _numChannels: 2
+    _samplesPerChannel: 62011
+    _guid: 42d7377f73f1ce54c8d96776159eb89a
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_6_D
+    _midiCode: 0
+    _pathInResources: Piano/paino_6_D
+    _numChannels: 2
+    _samplesPerChannel: 62011
+    _guid: 0b3e9c251ba44ae41868a85487d668b4
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_6_Ds
+    _midiCode: 0
+    _pathInResources: Piano/paino_6_Ds
+    _numChannels: 2
+    _samplesPerChannel: 62011
+    _guid: a515706bebcfcad42a4aa5d7168af620
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: paino_6_E
+    _midiCode: 0
+    _pathInResources: Piano/paino_6_E
+    _numChannels: 2
+    _samplesPerChannel: 61976
+    _guid: 57aedab4b209501468e7044bd5d2f753
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: clap-808
+    _midiCode: 0
+    _pathInResources: Drums/clap-808
+    _numChannels: 1
+    _samplesPerChannel: 47360
+    _guid: d46f075f7a0b6d74da1043dda7d12125
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: clap-analog
+    _midiCode: 0
+    _pathInResources: Drums/clap-analog
+    _numChannels: 1
+    _samplesPerChannel: 21344
+    _guid: f17bdd011cd238749b25cd5c92c94de2
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: clap-crushed
+    _midiCode: 0
+    _pathInResources: Drums/clap-crushed
+    _numChannels: 1
+    _samplesPerChannel: 8237
+    _guid: 092b1fa340dc33144ab8cb058f3657c5
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: clap-fat
+    _midiCode: 0
+    _pathInResources: Drums/clap-fat
+    _numChannels: 1
+    _samplesPerChannel: 10656
+    _guid: 484b48f051439f4408e9a7eb485df465
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: clap-slapper
+    _midiCode: 0
+    _pathInResources: Drums/clap-slapper
+    _numChannels: 1
+    _samplesPerChannel: 19680
+    _guid: f5db1b77589d8ee4b90df19ae58db7a5
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: clap-tape
+    _midiCode: 0
+    _pathInResources: Drums/clap-tape
+    _numChannels: 1
+    _samplesPerChannel: 17216
+    _guid: 14bf686adcb929b4598485824c24be0c
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: cowbell-808
+    _midiCode: 0
+    _pathInResources: Drums/cowbell-808
+    _numChannels: 1
+    _samplesPerChannel: 21184
+    _guid: 5975f908f576e7b4f89dfb839dc89179
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: crash-808
+    _midiCode: 0
+    _pathInResources: Drums/crash-808
+    _numChannels: 1
+    _samplesPerChannel: 125184
+    _guid: 5050734489b09b143ac6083b8085a145
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: crash-acoustic
+    _midiCode: 0
+    _pathInResources: Drums/crash-acoustic
+    _numChannels: 1
+    _samplesPerChannel: 175986
+    _guid: 1fa90f2035812974498e59bc2df232c0
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: crash-noise
+    _midiCode: 0
+    _pathInResources: Drums/crash-noise
+    _numChannels: 1
+    _samplesPerChannel: 127488
+    _guid: 7798d888c1a55bb42897d81dfa5c26f6
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: crash-tape
+    _midiCode: 0
+    _pathInResources: Drums/crash-tape
+    _numChannels: 1
+    _samplesPerChannel: 82892
+    _guid: e8b7d4d17991e2f48a071636e715feff
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: hihat-ring
+    _midiCode: 0
+    _pathInResources: Drums/hihat-ring
+    _numChannels: 1
+    _samplesPerChannel: 9584
+    _guid: cd2d64f28867fd94ab585e8bc095e7c4
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: hihat-reso
+    _midiCode: 0
+    _pathInResources: Drums/hihat-reso
+    _numChannels: 1
+    _samplesPerChannel: 9952
+    _guid: 8f81c11ed30fcc8499079162970657dd
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: hihat-plain
+    _midiCode: 0
+    _pathInResources: Drums/hihat-plain
+    _numChannels: 1
+    _samplesPerChannel: 4552
+    _guid: ca7ab45ed9324fb4090ce61b2771b36e
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: hihat-electro
+    _midiCode: 0
+    _pathInResources: Drums/hihat-electro
+    _numChannels: 1
+    _samplesPerChannel: 2368
+    _guid: c6d1d500862ac2141a91e0ee30f7edd5
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: hihat-dist02
+    _midiCode: 0
+    _pathInResources: Drums/hihat-dist02
+    _numChannels: 1
+    _samplesPerChannel: 24687
+    _guid: 434db22086f0733498af26c80c835cac
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: hihat-dist01
+    _midiCode: 0
+    _pathInResources: Drums/hihat-dist01
+    _numChannels: 1
+    _samplesPerChannel: 13409
+    _guid: 5a1ff363330dd7f4faac2c04e91e49aa
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: hihat-digital
+    _midiCode: 0
+    _pathInResources: Drums/hihat-digital
+    _numChannels: 1
+    _samplesPerChannel: 7360
+    _guid: 60e83278b0122ad4ca19778f68720c13
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: hihat-analog
+    _midiCode: 0
+    _pathInResources: Drums/hihat-analog
+    _numChannels: 1
+    _samplesPerChannel: 6272
+    _guid: bfc75fc10034cdb419c392c16ce2544f
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: hihat-acoustic02
+    _midiCode: 0
+    _pathInResources: Drums/hihat-acoustic02
+    _numChannels: 1
+    _samplesPerChannel: 17056
+    _guid: 1eed5cb30b67f724690d13ae4c554559
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: hihat-acoustic01
+    _midiCode: 0
+    _pathInResources: Drums/hihat-acoustic01
+    _numChannels: 1
+    _samplesPerChannel: 10656
+    _guid: 9252ec9640736c94ca87b57873534a25
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: hihat-808
+    _midiCode: 0
+    _pathInResources: Drums/hihat-808
+    _numChannels: 1
+    _samplesPerChannel: 6592
+    _guid: 1e7a8867faa92934da67478b2ddd5b54
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: snare-vinyl01
+    _midiCode: 0
+    _pathInResources: Drums/snare-vinyl01
+    _numChannels: 1
+    _samplesPerChannel: 8340
+    _guid: eebc00a1ca3bfac4798f8e808ae6c612
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: snare-vinyl02
+    _midiCode: 0
+    _pathInResources: Drums/snare-vinyl02
+    _numChannels: 1
+    _samplesPerChannel: 15265
+    _guid: 4d7457b6c71a40d42b149e1e866fa1e4
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: tom-rototom
+    _midiCode: 0
+    _pathInResources: Drums/tom-rototom
+    _numChannels: 1
+    _samplesPerChannel: 21248
+    _guid: b148cefe7a8a53749b884657dbfeea60
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: kick-gritty
+    _midiCode: 0
+    _pathInResources: Drums/kick-gritty
+    _numChannels: 1
+    _samplesPerChannel: 16640
+    _guid: 88e6cad4eaf824c42a1988af4c2e9b3b
+    _isStreamingAsset: 0
+    clipStatus: 0
+  _totalUncompressedBytes: 37021768
