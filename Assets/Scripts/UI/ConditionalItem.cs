@@ -10,7 +10,7 @@ public class ConditionalItem
 	public ConstFile.ConditionOptions cond2Ind;
 	public float cond2Val;
 	public ConstFile.Actions action;
-	public ConstFile.Notes note;
+	public ConstFile.NoteLen note;
 	string sentence;
 
 	public ConditionalItem()
@@ -21,7 +21,7 @@ public class ConditionalItem
 		greater = true;
 		cond2Ind = ConstFile.ConditionOptions.VALUE;
 		action = ConstFile.Actions.REST;
-		note = ConstFile.Notes.QUARTER;
+		note = ConstFile.NoteLen.QUARTER;
 	}
 	public string GetSentence()
 	{

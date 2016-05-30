@@ -23,7 +23,7 @@ public class ConditionalEditBox : MonoBehaviour {
 		noteDropdown.ClearOptions();
 		for (int i = 0; i < 5; i++)
 		{
-			Dropdown.OptionData opt = new Dropdown.OptionData(((ConstFile.Notes)i).ToString());
+			Dropdown.OptionData opt = new Dropdown.OptionData(((ConstFile.NoteLen)i).ToString());
 			noteDropdown.options.Add(opt);
 		}
 	}
@@ -37,7 +37,7 @@ public class ConditionalEditBox : MonoBehaviour {
 		tempItem.cond1Val = cond1.currVal;
 		tempItem.cond2Val = cond2.currVal;
 		tempItem.greater = condBool.value == 0 ? true : false;
-		tempItem.note = (ConstFile.Notes) noteDropdown.value;
+		tempItem.note = (ConstFile.NoteLen) noteDropdown.value;
 	}
 
 	public void SetVals(ConditionalItem newItem)

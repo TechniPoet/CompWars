@@ -24,7 +24,6 @@ public class PulseScript : MonoBehaviour, IGATPulseClient
 
 	public void OnPulse(IGATPulseInfo pulseInfo)
 	{
-		Debug.Log(pulseInfo.StepIndex);
 		if (PlayNotesEvent != null)
 		{
 			PlayNotesEvent(pulseInfo.StepIndex);

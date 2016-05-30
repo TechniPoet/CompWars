@@ -23,6 +23,8 @@ public static class ConstFile
 		DOWN_LEFT = 7,
 	}
 
+	#region Direction Vectors
+
 	public static Vector2 UPVec = new Vector2(0,1);
 	public static Vector2 DOWNVec = new Vector2(0, -1);
 	public static Vector2 LEFTVec = new Vector2(-1, 0);
@@ -33,6 +35,10 @@ public static class ConstFile
 	public static Vector2 DOWN_RIGHTVec = new Vector2(1, -1);
 	public static Vector2[] DirectionVectors = new Vector2[] {
 		UPVec, DOWNVec, LEFTVec, RIGHTVec, UP_RIGHTVec, UP_LEFTVec, DOWN_RIGHTVec, DOWN_LEFTVec };
+
+
+	#endregion
+
 
 	public enum AIModes
 	{
@@ -62,7 +68,7 @@ public static class ConstFile
 	public static string[] ActionsText = new string[] { "Attack", "Move Forward", "Move to Enemy", "Move Back", "Rest" };
 
 	public static float BPM = 60;
-	public enum Notes : int
+	public enum NoteLen : int
 	{
 		WHOLE = 0,
 		HALF = 1,
@@ -75,4 +81,36 @@ public static class ConstFile
 	}
 	// Based on data from http://bradthemad.org/guitar/tempo_explanation.php 
 	public static float[] NoteBPMCalcs = new float[] { 240, 120, 60, 30, 15, 90, 45, 22.5f};
+
+	public enum NOTE : int
+	{
+		A,
+		A_SHARP,
+		B,
+		C,
+		C_SHARP,
+		D,
+		D_SHARP,
+		E,
+		F,
+		F_SHARP,
+		G,
+		G_SHARP,
+	}
+
+	public static string[] PIANO_NOTES = new string[]
+	{
+		"piano_{0}_A",
+		"piano_{0}_As",
+		"piano_{0}_B",
+		"piano_{0}_C",
+		"piano_{0}_Cs",
+		"piano_{0}_D",
+		"piano_{0}_Ds",
+		"piano_{0}_E",
+		"piano_{0}_F",
+		"piano_{0}_Fs",
+		"piano_{0}_G",
+		"piano_{0}_Gs",
+	};
 }
