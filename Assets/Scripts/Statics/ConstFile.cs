@@ -75,12 +75,33 @@ public static class ConstFile
 		QUARTER = 2,
 		EIGHTH = 3,
 		SIXTEENTH = 4,
+		/*
 		DOTTED_QUARTER = 5,
 		DOTTED_EIGTH = 6,
 		DOTTED_SIXTEENTH = 7,
+		*/
 	}
 	// Based on data from http://bradthemad.org/guitar/tempo_explanation.php 
 	public static float[] NoteBPMCalcs = new float[] { 240, 120, 60, 30, 15, 90, 45, 22.5f};
+
+
+	public enum CHORD_TYPE
+	{
+		TRIAD,
+		MINOR,
+	}
+
+	public enum ROMAN_NUMBERAL : int
+	{
+		I = 0,
+		II = 1,
+		III = 2,
+		IV = 3,
+		V = 4,
+		VI = 5,
+		VII = 6,
+	}
+
 
 	public enum NOTE : int
 	{
