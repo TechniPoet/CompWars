@@ -60,7 +60,7 @@ GameObject:
   - 114: {fileID: 11407656}
   - 114: {fileID: 11436608}
   m_Layer: 0
-  m_Name: 32Pulse
+  m_Name: 16Pulse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Bypass: 0
   _Period: 1
-  _Steps: 0101010101010101010101010101010101010101010101010101010101010101
+  _Steps: 01010101010101010101010101010101
   _RandomBypassStep: 0
   _StepBypassChance: 0
   _pulseUnit: 0
@@ -331,7 +331,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sampleBank: {fileID: 11439216}
   toLoad: {fileID: 11400000, guid: 3707da7a6d7c9c544af640a79ab2515d, type: 2}
+  mainPulse: {fileID: 11468980}
   pulser: {fileID: 11436608}
+  key: 0
+  progressions:
+  - prog:
+    - chordBase: 0
+      chordType: 0
+      playOn: 2
+      count: 0
+    - chordBase: 3
+      chordType: 0
+      playOn: 2
+      count: 1
+    - chordBase: 4
+      chordType: 0
+      playOn: 2
+      count: 2
+    - chordBase: 0
+      chordType: 0
+      playOn: 2
+      count: 3
+  - prog:
+    - chordBase: 0
+      chordType: 0
+      playOn: 4
+      count: 0
+    - chordBase: 0
+      chordType: 0
+      playOn: 4
+      count: 1
+    - chordBase: 0
+      chordType: 0
+      playOn: 3
+      count: 1
+    - chordBase: 3
+      chordType: 0
+      playOn: 2
+      count: 1
+    - chordBase: 4
+      chordType: 0
+      playOn: 2
+      count: 2
+    - chordBase: 0
+      chordType: 0
+      playOn: 2
+      count: 3
+  progressionInd: 0
+  progressionList: 0000000001000000
 --- !u!114 &11468980
 MonoBehaviour:
   m_ObjectHideFlags: 1
