@@ -203,10 +203,7 @@ public class MusicManager : GameMono
 	};
 	
 	
-	public List<Progression> progressions = new List<Progression>()
-	{
-		//new Progression(OneFourFiveProgression)
-	};
+	public List<Progression> progressions = new List<Progression>();
 
 	
 	public int progressionInd = 0;

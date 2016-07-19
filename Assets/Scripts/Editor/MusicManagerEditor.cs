@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using UnityEditorInternal;
 using System.Collections;
 using System.Collections.Generic;
 using GAudio;
@@ -8,7 +9,7 @@ using GAudio;
 public class MusicManagerEditor : Editor
 {
 	protected MusicManager m;
-
+    protected ReorderableList progList;
 	protected static GUILayoutOption[] __closeTogglesOptions = new GUILayoutOption[] 
 	{ GUILayout.Width(20f), GUILayout.ExpandWidth(false) };
 
@@ -18,13 +19,38 @@ public class MusicManagerEditor : Editor
 
 	protected void OnEnable()
 	{
-		
+
+        progList = new ReorderableList(serializedObject,
+                serializedObject.FindProperty("progName"),
+                true, true, true, true);
+        
+        progList.drawElementCallback =
+            (Rect rect, int index, bool isActive, bool isFocused) =>
+            {
+                var element = progList.serializedProperty.GetArrayElementAtIndex(index);
+                rect.y += 2;
+                EditorGUI.PropertyField(
+                    new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight),
+                    element.FindPropertyRelative("progName"));
+            };
 	}
 
 
 	public override void OnInspectorGUI()
 	{
-		DrawDefaultInspector();
+        m = (MusicManager)target;
+		//DrawDefaultInspector();
+        
+        m.sampleBank = (GATActiveSampleBank)EditorGUILayout.ObjectField("Sample Bank", m.sampleBank, typeof (GATActiveSampleBank), true);
+        m.toLoad = (GATSoundBank)EditorGUILayout.ObjectField("Sound Bank to Load", m.toLoad, typeof(GATSoundBank), true);
+        m.mainPulse = (MasterPulseModule)EditorGUILayout.ObjectField("Main Pulse", m.mainPulse, typeof(MasterPulseModule), true);
+        m.pulser = (PulseScript)EditorGUILayout.ObjectField("Pulser", m.pulser, typeof(PulseScript), true);
+        m.key = (ConstFile.NOTE)EditorGUILayout.EnumPopup("Key", m.key);
+
+        EditorGUILayout.LabelField("Chord Progressions");
+        
+
+        
 		/*
 		if (__boxStyle == null)
 		{

@@ -6,7 +6,8 @@ using System.IO;
 public class ProgressionEditor : EditorWindow
 {
 	Progression prog;
-	int load;
+	int load = 0;
+    Vector2 scrollPos;
 	protected static GUILayoutOption[] __closeTogglesOptions = new GUILayoutOption[]
 	{ GUILayout.Width(20f), GUILayout.ExpandWidth(false) };
 
@@ -29,7 +30,10 @@ public class ProgressionEditor : EditorWindow
 		{
 			fileNames.Add(files[i].Name);
 		}
-		EditorGUILayout.Popup(0, fileNames.ToArray(), GUILayout.MaxWidth(200f));
+        if (files.Length > 0)
+        {
+            load = EditorGUILayout.Popup(load, fileNames.ToArray(), GUILayout.MaxWidth(200f));
+        }
 		
 		if (GUILayout.Button("Save") && prog != null && !string.IsNullOrEmpty(prog.progName))
 		{
@@ -49,14 +53,21 @@ public class ProgressionEditor : EditorWindow
 
 		EditorGUILayout.Space();
 		EditorGUILayout.Space();
-		if (EditorPrefs.GetString("Last Prog") == null && prog == null)
+		if (EditorPrefs.GetString("Last Prog") == null)
 		{
-			NewProgression();
-			EditorUtility.SetDirty(this);
+            if (prog == null)
+            {
+                NewProgression();
+            }
 		}
 		else
 		{
-		}
+            if (prog == null)
+            {
+                NewProgression();
+                JsonUtility.FromJsonOverwrite(File.ReadAllText(EditorPrefs.GetString("Last Prog").ToString()), prog);
+            }
+        }
 
 		ProgressionEditBox();
 
@@ -77,12 +88,12 @@ public class ProgressionEditor : EditorWindow
 
 	void ProgressionEditBox()
 	{
-		prog.progName = EditorGUILayout.TextField("Progression Name: ", prog.progName);
+		prog.progName = EditorGUILayout.TextField("Progression Name:", prog.progName);
 
 		EditorGUILayout.BeginVertical("box");
-
-		ChordEditBox();
-
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+        ChordEditBox();
+        EditorGUILayout.EndScrollView();
 		if (GUILayout.Button("Add Chord"))
 		{
 			prog.AddChord();
@@ -93,6 +104,7 @@ public class ProgressionEditor : EditorWindow
 
 	void ChordEditBox()
 	{
+        
 		for (int i = 0; i < prog.prog.Length; i++)
 		{
 			ChordNotation chord = prog.prog[i];
@@ -103,18 +115,18 @@ public class ProgressionEditor : EditorWindow
 				EditorGUILayout.BeginHorizontal();
 
 				EditorGUILayout.BeginVertical();
-				EditorGUILayout.LabelField("Chord Base");
-				chord.chordBase = (ConstFile.ROMAN_NUMBERAL)EditorGUILayout.EnumPopup(chord.chordBase);
+				EditorGUILayout.LabelField("Chord Base", GUILayout.MinWidth(80));
+				chord.chordBase = (ConstFile.ROMAN_NUMBERAL)EditorGUILayout.EnumPopup(chord.chordBase, GUILayout.MinWidth(80));
 				EditorGUILayout.EndVertical();
 
 				EditorGUILayout.BeginVertical();
-				EditorGUILayout.LabelField("Chord Type");
-				chord.chordType = (ConstFile.CHORD_TYPE)EditorGUILayout.EnumPopup(chord.chordType);
+				EditorGUILayout.LabelField("Chord Type", GUILayout.MinWidth(80));
+				chord.chordType = (ConstFile.CHORD_TYPE)EditorGUILayout.EnumPopup(chord.chordType, GUILayout.MinWidth(80));
 				EditorGUILayout.EndVertical();
 
 				EditorGUILayout.BeginVertical();
-				EditorGUILayout.LabelField("Chord Length");
-				chord.noteLen = (ConstFile.NoteLen)EditorGUILayout.EnumPopup(chord.noteLen);
+				EditorGUILayout.LabelField("Chord Length", GUILayout.MinWidth(90));
+				chord.noteLen = (ConstFile.NoteLen)EditorGUILayout.EnumPopup(chord.noteLen, GUILayout.MinWidth(90));
 				EditorGUILayout.EndVertical();
 
 				EditorGUILayout.EndHorizontal();
