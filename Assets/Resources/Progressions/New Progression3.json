@@ -1,20 +1,6 @@
 {
-    "progName": "New Progression",
+    "progName": "New Progression3",
     "prog": [
-        {
-            "chordName": "",
-            "isOn": false,
-            "chordBase": 0,
-            "chordType": 0,
-            "playOn": 2,
-            "noteLen": 2,
-            "counts": [
-                1,
-                1,
-                1,
-                1
-            ]
-        },
         {
             "chordName": "",
             "isOn": false,
@@ -30,17 +16,6 @@
                 1,
                 0,
                 0,
-                1
-            ]
-        },
-        {
-            "chordName": "",
-            "isOn": false,
-            "chordBase": 2,
-            "chordType": 0,
-            "playOn": 0,
-            "noteLen": 0,
-            "counts": [
                 1
             ]
         },
@@ -63,21 +38,23 @@
             "isOn": false,
             "chordBase": 0,
             "chordType": 0,
-            "playOn": 4,
+            "playOn": 2,
             "noteLen": 0,
             "counts": [
                 0,
                 0,
                 0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
+                0
+            ]
+        },
+        {
+            "chordName": "",
+            "isOn": false,
+            "chordBase": 0,
+            "chordType": 0,
+            "playOn": 2,
+            "noteLen": 0,
+            "counts": [
                 0,
                 0,
                 0,

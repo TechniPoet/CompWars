@@ -38,14 +38,14 @@ public class ProgressionEditor : EditorWindow
 		if (GUILayout.Button("Save") && prog != null && !string.IsNullOrEmpty(prog.progName))
 		{
 			string json = JsonUtility.ToJson(prog, true);
-			File.WriteAllText(string.Format("Assets/Resources/Progressions/{0}.json", prog.progName), json);
-			EditorPrefs.SetString("Last Prog", string.Format("Assets/Resources/Progressions/{0}.json", prog.progName));
+			File.WriteAllText(Path.Combine("Assets/Resources/Progressions", string.Format("{0}.json",prog.progName)), json);
+			EditorPrefs.SetString("Last Prog", Path.Combine("Assets/Resources/Progressions", string.Format("{0}.json", prog.progName)));
 		}
 		if (GUILayout.Button("Load") && files.Length > 0)
 		{
 			NewProgression();
 			JsonUtility.FromJsonOverwrite(File.ReadAllText(files[load].ToString()), prog);
-			EditorPrefs.SetString("Last Prog", string.Format("Assets/Resources/Progressions/{0}.json", prog.progName));
+			EditorPrefs.SetString("Last Prog", Path.Combine("Assets/Resources/Progressions", string.Format("{0}.json", prog.progName)));
 		}
 
 		EditorGUILayout.EndHorizontal();

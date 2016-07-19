@@ -1,0 +1,51 @@
+{
+    "progName": "New Progression2",
+    "prog": [
+        {
+            "chordName": "",
+            "isOn": false,
+            "chordBase": 1,
+            "chordType": 0,
+            "playOn": 3,
+            "noteLen": 0,
+            "counts": [
+                1,
+                1,
+                0,
+                0,
+                1,
+                0,
+                0,
+                1
+            ]
+        },
+        {
+            "chordName": "",
+            "isOn": false,
+            "chordBase": 0,
+            "chordType": 0,
+            "playOn": 2,
+            "noteLen": 0,
+            "counts": [
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "chordName": "",
+            "isOn": false,
+            "chordBase": 0,
+            "chordType": 0,
+            "playOn": 2,
+            "noteLen": 0,
+            "counts": [
+                0,
+                0,
+                0,
+                0
+            ]
+        }
+    ]
+}
