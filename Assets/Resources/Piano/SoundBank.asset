@@ -8,219 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99e071ed3c424e16bf543c19f92bf91, type: 3}
+  m_Script: {fileID: 11500000, guid: 0eb63b7ef4cb46a41aaa8e7fb7198e69, type: 3}
   m_Name: SoundBank
   m_EditorClassIdentifier: 
   _sampleRate: 44100
   _sampleInfos:
-  - _name: clap-808
-    _midiCode: 0
-    _pathInResources: Drums/clap-808
-    _numChannels: 1
-    _samplesPerChannel: 47360
-    _guid: d46f075f7a0b6d74da1043dda7d12125
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: clap-analog
-    _midiCode: 0
-    _pathInResources: Drums/clap-analog
-    _numChannels: 1
-    _samplesPerChannel: 21344
-    _guid: f17bdd011cd238749b25cd5c92c94de2
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: clap-crushed
-    _midiCode: 0
-    _pathInResources: Drums/clap-crushed
-    _numChannels: 1
-    _samplesPerChannel: 8237
-    _guid: 092b1fa340dc33144ab8cb058f3657c5
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: clap-fat
-    _midiCode: 0
-    _pathInResources: Drums/clap-fat
-    _numChannels: 1
-    _samplesPerChannel: 10656
-    _guid: 484b48f051439f4408e9a7eb485df465
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: clap-slapper
-    _midiCode: 0
-    _pathInResources: Drums/clap-slapper
-    _numChannels: 1
-    _samplesPerChannel: 19680
-    _guid: f5db1b77589d8ee4b90df19ae58db7a5
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: clap-tape
-    _midiCode: 0
-    _pathInResources: Drums/clap-tape
-    _numChannels: 1
-    _samplesPerChannel: 17216
-    _guid: 14bf686adcb929b4598485824c24be0c
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: cowbell-808
-    _midiCode: 0
-    _pathInResources: Drums/cowbell-808
-    _numChannels: 1
-    _samplesPerChannel: 21184
-    _guid: 5975f908f576e7b4f89dfb839dc89179
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: crash-808
-    _midiCode: 0
-    _pathInResources: Drums/crash-808
-    _numChannels: 1
-    _samplesPerChannel: 125184
-    _guid: 5050734489b09b143ac6083b8085a145
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: crash-acoustic
-    _midiCode: 0
-    _pathInResources: Drums/crash-acoustic
-    _numChannels: 1
-    _samplesPerChannel: 175986
-    _guid: 1fa90f2035812974498e59bc2df232c0
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: crash-noise
-    _midiCode: 0
-    _pathInResources: Drums/crash-noise
-    _numChannels: 1
-    _samplesPerChannel: 127488
-    _guid: 7798d888c1a55bb42897d81dfa5c26f6
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: crash-tape
-    _midiCode: 0
-    _pathInResources: Drums/crash-tape
-    _numChannels: 1
-    _samplesPerChannel: 82892
-    _guid: e8b7d4d17991e2f48a071636e715feff
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: hihat-ring
-    _midiCode: 0
-    _pathInResources: Drums/hihat-ring
-    _numChannels: 1
-    _samplesPerChannel: 9584
-    _guid: cd2d64f28867fd94ab585e8bc095e7c4
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: hihat-reso
-    _midiCode: 0
-    _pathInResources: Drums/hihat-reso
-    _numChannels: 1
-    _samplesPerChannel: 9952
-    _guid: 8f81c11ed30fcc8499079162970657dd
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: hihat-plain
-    _midiCode: 0
-    _pathInResources: Drums/hihat-plain
-    _numChannels: 1
-    _samplesPerChannel: 4552
-    _guid: ca7ab45ed9324fb4090ce61b2771b36e
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: hihat-electro
-    _midiCode: 0
-    _pathInResources: Drums/hihat-electro
-    _numChannels: 1
-    _samplesPerChannel: 2368
-    _guid: c6d1d500862ac2141a91e0ee30f7edd5
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: hihat-dist02
-    _midiCode: 0
-    _pathInResources: Drums/hihat-dist02
-    _numChannels: 1
-    _samplesPerChannel: 24687
-    _guid: 434db22086f0733498af26c80c835cac
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: hihat-dist01
-    _midiCode: 0
-    _pathInResources: Drums/hihat-dist01
-    _numChannels: 1
-    _samplesPerChannel: 13409
-    _guid: 5a1ff363330dd7f4faac2c04e91e49aa
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: hihat-digital
-    _midiCode: 0
-    _pathInResources: Drums/hihat-digital
-    _numChannels: 1
-    _samplesPerChannel: 7360
-    _guid: 60e83278b0122ad4ca19778f68720c13
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: hihat-analog
-    _midiCode: 0
-    _pathInResources: Drums/hihat-analog
-    _numChannels: 1
-    _samplesPerChannel: 6272
-    _guid: bfc75fc10034cdb419c392c16ce2544f
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: hihat-acoustic02
-    _midiCode: 0
-    _pathInResources: Drums/hihat-acoustic02
-    _numChannels: 1
-    _samplesPerChannel: 17056
-    _guid: 1eed5cb30b67f724690d13ae4c554559
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: hihat-acoustic01
-    _midiCode: 0
-    _pathInResources: Drums/hihat-acoustic01
-    _numChannels: 1
-    _samplesPerChannel: 10656
-    _guid: 9252ec9640736c94ca87b57873534a25
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: hihat-808
-    _midiCode: 0
-    _pathInResources: Drums/hihat-808
-    _numChannels: 1
-    _samplesPerChannel: 6592
-    _guid: 1e7a8867faa92934da67478b2ddd5b54
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: snare-vinyl01
-    _midiCode: 0
-    _pathInResources: Drums/snare-vinyl01
-    _numChannels: 1
-    _samplesPerChannel: 8340
-    _guid: eebc00a1ca3bfac4798f8e808ae6c612
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: snare-vinyl02
-    _midiCode: 0
-    _pathInResources: Drums/snare-vinyl02
-    _numChannels: 1
-    _samplesPerChannel: 15265
-    _guid: 4d7457b6c71a40d42b149e1e866fa1e4
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: tom-rototom
-    _midiCode: 0
-    _pathInResources: Drums/tom-rototom
-    _numChannels: 1
-    _samplesPerChannel: 21248
-    _guid: b148cefe7a8a53749b884657dbfeea60
-    _isStreamingAsset: 0
-    clipStatus: 0
-  - _name: kick-gritty
-    _midiCode: 0
-    _pathInResources: Drums/kick-gritty
-    _numChannels: 1
-    _samplesPerChannel: 16640
-    _guid: 88e6cad4eaf824c42a1988af4c2e9b3b
-    _isStreamingAsset: 0
-    clipStatus: 0
   - _name: piano_6_E
     _midiCode: 0
     _pathInResources: Piano/piano_6_E
@@ -661,20 +453,20 @@ MonoBehaviour:
     _guid: 5b03f54d52d7ff64db8d188a64d73ea3
     _isStreamingAsset: 0
     clipStatus: 0
-  - _name: piano_2_A
-    _midiCode: 0
-    _pathInResources: Piano/piano_2_A
-    _numChannels: 1
-    _samplesPerChannel: 61984
-    _guid: a154921d367ddb348bdb91bee44b1a90
-    _isStreamingAsset: 0
-    clipStatus: 0
   - _name: piano_1_Gs
     _midiCode: 0
     _pathInResources: Piano/piano_1_Gs
     _numChannels: 1
     _samplesPerChannel: 61916
     _guid: 2c37e48bdcf892e45b16a5a59b532da8
+    _isStreamingAsset: 0
+    clipStatus: 0
+  - _name: piano_2_A
+    _midiCode: 0
+    _pathInResources: Piano/piano_2_A
+    _numChannels: 1
+    _samplesPerChannel: 61984
+    _guid: a154921d367ddb348bdb91bee44b1a90
     _isStreamingAsset: 0
     clipStatus: 0
   - _name: piano_1_G
@@ -765,4 +557,4 @@ MonoBehaviour:
     _guid: d329986c607626f4188f9134f6afc21d
     _isStreamingAsset: 0
     clipStatus: 0
-  _totalUncompressedBytes: 20173300
+  _totalUncompressedBytes: 16848468
