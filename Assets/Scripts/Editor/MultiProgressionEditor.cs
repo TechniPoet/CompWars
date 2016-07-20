@@ -128,7 +128,7 @@ public class MultiProgressionEditor : EditorWindow
     void MultiProgEditBox()
     {
         
-        DirectoryInfo dir = new DirectoryInfo("Assets/Resources/Progressions");
+        DirectoryInfo dir = new DirectoryInfo(Path.Combine("Assets/Resources","Progressions"));
         progFiles = dir.GetFiles("*.json");
         fileNames = new List<string>();
         if (progFiles != null)

@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using GAudio;
 
 [CustomEditor(typeof(MusicManager))]
@@ -16,23 +17,10 @@ public class MusicManagerEditor : Editor
 	protected static GUIStyle __boxStyle;
 	protected static Color __blueColor = new Color(.7f, .7f, 1f);
 	protected static Color __purpleColor = new Color(.8f, .6f, 1f);
+    int load = 0;
 
 	protected void OnEnable()
 	{
-
-        progList = new ReorderableList(serializedObject,
-                serializedObject.FindProperty("progName"),
-                true, true, true, true);
-        
-        progList.drawElementCallback =
-            (Rect rect, int index, bool isActive, bool isFocused) =>
-            {
-                var element = progList.serializedProperty.GetArrayElementAtIndex(index);
-                rect.y += 2;
-                EditorGUI.PropertyField(
-                    new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight),
-                    element.FindPropertyRelative("progName"));
-            };
 	}
 
 
@@ -46,12 +34,34 @@ public class MusicManagerEditor : Editor
         m.mainPulse = (MasterPulseModule)EditorGUILayout.ObjectField("Main Pulse", m.mainPulse, typeof(MasterPulseModule), true);
         m.pulser = (PulseScript)EditorGUILayout.ObjectField("Pulser", m.pulser, typeof(PulseScript), true);
         m.key = (ConstFile.NOTE)EditorGUILayout.EnumPopup("Key", m.key);
-
+        
         EditorGUILayout.LabelField("Chord Progressions");
-        
 
+        DirectoryInfo dir = new DirectoryInfo("Assets/Resources/MultiProgressions");
+        FileInfo[] files = dir.GetFiles("*.json");
+        List<string> fileNames = new List<string>();
+        for (int i = 0; i < files.Length; i++)
+        {
+            fileNames.Add(files[i].Name);
+        }
+        load = EditorGUILayout.Popup(load, fileNames.ToArray());
+        m.multiProgName = fileNames[load];
+
+        GUILayout.Label("Curr Progression Index: "+ m.progressionInd);
+        GUILayout.Label("Beat: "+ m.currBeat);
+        if (m.progressions != null && m.progressions.Count > 0)
+        {
+            GUILayout.Label("prog list size: "+ m.progressions.Count);
+            GUILayout.Label("Curr Progression: " + m.currProgression.progName);
+
+            foreach (Progression p in m.progressions)
+            {
+                GUILayout.Label(p.progName);
+            }
+        }
         
-		/*
+        
+        /*
 		if (__boxStyle == null)
 		{
 			__boxStyle = new GUIStyle(GUI.skin.box);
@@ -100,5 +110,5 @@ public class MusicManagerEditor : Editor
 
 		EditorGUILayout.EndVertical();
 		*/
-	}
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using GAudio;
 using ROMAN_NUM = ConstFile.ROMAN_NUMBERAL;
 using CHORD_TYPE = ConstFile.CHORD_TYPE;
-
+using System.IO;
 
 [System.Serializable]
 public class ChordNotation
@@ -184,6 +184,11 @@ public class MusicManager : GameMono
 	public MasterPulseModule mainPulse;
 	public PulseScript pulser;
 
+    [SerializeField]
+    public MultiProgression multiProg;
+    [SerializeField]
+    public string multiProgName;
+
 	GATEnvelope wholeNoteEnv;
 	GATEnvelope halfNoteEnv;
 	GATEnvelope quarterNoteEnv;
@@ -194,25 +199,15 @@ public class MusicManager : GameMono
 
 	int[] keyScale;
 
-	static ChordNotation[] OneFourFiveProgression = new ChordNotation[]
-	{
-		new ChordNotation(ROMAN_NUM.I, CHORD_TYPE.TRIAD, ConstFile.NoteLen.QUARTER, 0),
-		new ChordNotation(ROMAN_NUM.IV, CHORD_TYPE.TRIAD, ConstFile.NoteLen.QUARTER, 1),
-		new ChordNotation(ROMAN_NUM.V, CHORD_TYPE.TRIAD, ConstFile.NoteLen.QUARTER, 2),
-		new ChordNotation(ROMAN_NUM.I, CHORD_TYPE.TRIAD, ConstFile.NoteLen.QUARTER, 3)
-	};
-	
-	
 	public List<Progression> progressions = new List<Progression>();
-
+    public Progression currProgression;
 	
 	public int progressionInd = 0;
 
 	int[] majorProgression = new int[] { 0, 3, 4, 0 };
 	int[] scaleSteps = new int[] { 0, 2, 2, 1, 2, 2, 2 };
-
-	public int[] progressionList;
-	int progListInd = 0;
+    
+    public int currBeat = 0;
 
 	// Use this for initialization
 	void Awake ()
@@ -222,11 +217,24 @@ public class MusicManager : GameMono
 		int baseKey = (int)key;
 
 		keyScale = MusicUtil.GetScaleArray(baseKey);
+
+        multiProg = ScriptableObject.CreateInstance<MultiProgression>() as MultiProgression;
+        multiProg.Init();
+        JsonUtility.FromJsonOverwrite(File.ReadAllText(Path.Combine("Assets/Resources/MultiProgressions", string.Format("{0}.json", "Progression Series"))), multiProg);
+        multiProg.Load();
+
+        for (int i = 0; i < multiProg.progFiles.Count; i++)
+        {
+            progressions.Add(multiProg.progFiles[i].p);
+            print("Added "+ multiProg.progFiles[i].p.progName);
+        }
+        currProgression = progressions[progressions.Count - 1];
 	}
 
 
 	void Play(int i)
 	{
+        currBeat = i;
 		if (i % 16 == 0)
 		{
 			WholeBeat(i);
@@ -244,7 +252,8 @@ public class MusicManager : GameMono
 			EighthBeat((i / 2));
 		}
 		SixteenthBeat(i);
-	}
+        
+    }
 
 
 	void StartPulse()
@@ -304,8 +313,11 @@ public class MusicManager : GameMono
 		PlayChord(ConstFile.NoteLen.SIXTEENTH, rep, sixteenthNoteEnv, ConstFile.PIANO_NOTES);
 		if (rep == 15)
 		{
-			progListInd = (progListInd + 1) % progressionList.Length;
-			progressionInd = progressionList[progListInd];
+
+            print("ind: " + progressionInd + " ind + 1: " + (progressionInd + 1) + " % count: " + (progressionInd + 1) % progressions.Count);
+            progressionInd = (progressionInd + 1) % progressions.Count;
+            this.currProgression = progressions[progressionInd];
+            print("new Prog: "+ this.currProgression.progName+ " or "+ progressions[progressionInd].progName);
 		}
 	}
 

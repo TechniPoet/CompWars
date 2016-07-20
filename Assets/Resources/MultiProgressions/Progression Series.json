@@ -2,10 +2,16 @@
     "multiProgName": "Progression Series",
     "progFiles": [
         {
+            "fileName": "Test.json"
+        },
+        {
             "fileName": "New Progression3.json"
         },
         {
             "fileName": "Test.json"
+        },
+        {
+            "fileName": "New Progression3.json"
         }
     ]
 }
