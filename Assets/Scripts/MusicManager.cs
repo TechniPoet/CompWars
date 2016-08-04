@@ -208,6 +208,8 @@ public class MusicManager : GameMono
 	int[] scaleSteps = new int[] { 0, 2, 2, 1, 2, 2, 2 };
     
     public int currBeat = 0;
+    [SerializeField]
+    public Transform playHead;
 
 	// Use this for initialization
 	void Awake ()
@@ -220,7 +222,8 @@ public class MusicManager : GameMono
 
         multiProg = ScriptableObject.CreateInstance<MultiProgression>() as MultiProgression;
         multiProg.Init();
-        JsonUtility.FromJsonOverwrite(File.ReadAllText(Path.Combine("Assets/Resources/MultiProgressions", string.Format("{0}.json", "Progression Series"))), multiProg);
+        Debug.Log("opening "+ Path.Combine("Assets/Resources/MultiProgressions", string.Format("{0}", multiProgName)));
+        JsonUtility.FromJsonOverwrite(File.ReadAllText(Path.Combine("Assets/Resources/MultiProgressions", string.Format("{0}", "145 Test.json"))), multiProg);
         multiProg.Load();
 
         for (int i = 0; i < multiProg.progFiles.Count; i++)
@@ -252,7 +255,8 @@ public class MusicManager : GameMono
 			EighthBeat((i / 2));
 		}
 		SixteenthBeat(i);
-        
+        playHead.transform.localScale = new Vector3(ArenaManager.nodeWidth*4, playHead.transform.localScale.y, playHead.transform.localScale.z);
+        playHead.transform.position = new Vector3(ArenaManager.leftSide.x + ((ArenaManager.screenWidth/16)*(i+.5f)), ArenaManager.midPoint.y, 0);
     }
 
 
@@ -313,11 +317,8 @@ public class MusicManager : GameMono
 		PlayChord(ConstFile.NoteLen.SIXTEENTH, rep, sixteenthNoteEnv, ConstFile.PIANO_NOTES);
 		if (rep == 15)
 		{
-
-            print("ind: " + progressionInd + " ind + 1: " + (progressionInd + 1) + " % count: " + (progressionInd + 1) % progressions.Count);
             progressionInd = (progressionInd + 1) % progressions.Count;
             this.currProgression = progressions[progressionInd];
-            print("new Prog: "+ this.currProgression.progName+ " or "+ progressions[progressionInd].progName);
 		}
 	}
 

@@ -19,20 +19,22 @@ public class MusicManagerEditor : Editor
 	protected static Color __purpleColor = new Color(.8f, .6f, 1f);
     int load = 0;
 
-	protected void OnEnable()
-	{
-	}
+	void Awake()
+    {
+        m = (MusicManager)target;
+    }
 
 
 	public override void OnInspectorGUI()
 	{
-        m = (MusicManager)target;
+        
 		//DrawDefaultInspector();
         
         m.sampleBank = (GATActiveSampleBank)EditorGUILayout.ObjectField("Sample Bank", m.sampleBank, typeof (GATActiveSampleBank), true);
         m.toLoad = (GATSoundBank)EditorGUILayout.ObjectField("Sound Bank to Load", m.toLoad, typeof(GATSoundBank), true);
         m.mainPulse = (MasterPulseModule)EditorGUILayout.ObjectField("Main Pulse", m.mainPulse, typeof(MasterPulseModule), true);
         m.pulser = (PulseScript)EditorGUILayout.ObjectField("Pulser", m.pulser, typeof(PulseScript), true);
+        m.playHead = (Transform)EditorGUILayout.ObjectField("Play Head", m.playHead, typeof(Transform));
         m.key = (ConstFile.NOTE)EditorGUILayout.EnumPopup("Key", m.key);
         
         EditorGUILayout.LabelField("Chord Progressions");
@@ -59,8 +61,8 @@ public class MusicManagerEditor : Editor
                 GUILayout.Label(p.progName);
             }
         }
-        
-        
+        target = m;
+
         /*
 		if (__boxStyle == null)
 		{

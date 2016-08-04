@@ -5,6 +5,17 @@ using System.Collections.Generic;
 
 public class MultiProgressionEditor : EditorWindow
 {
+    struct swap
+    {
+        public int x2;
+        public int x1;
+        public swap (int newX1, int newX2)
+        {
+            x1 = newX1;
+            x2 = newX2;
+        }
+    }
+
     int load = 0;
     MultiProgression multiProg;
     protected static GUILayoutOption[] __closeTogglesOptions = new GUILayoutOption[]
@@ -14,6 +25,10 @@ public class MultiProgressionEditor : EditorWindow
     static GUIStyle __noteRepFont = new GUIStyle()
     {
         fontSize = 10,
+    };
+    static GUILayoutOption[] __controlButtonOptions = new GUILayoutOption[]
+    {
+        GUILayout.Width(30f)
     };
     static float __noteRepWidth = 30f;
     static float __chordBoxMinWidth = 30f;
@@ -25,6 +40,10 @@ public class MultiProgressionEditor : EditorWindow
 
     Vector2 scrollPos;
     bool shouldAddProgression = false;
+
+    List<swap> swaps = new List<swap>();
+    List<int> removes = new List<int>();
+
     [MenuItem("MusicEditor/Multi Progressions")]
     static void CreateWindow()
     {
@@ -150,71 +169,10 @@ public class MultiProgressionEditor : EditorWindow
            
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
             #region scroll Progression
-            for (int i = 0; i < multiProg.ProgFiles.Count; i++)
-            {
-                
-                EditorGUILayout.BeginVertical("box");
-                #region vertBox
-                EditorGUILayout.BeginHorizontal();
-                #region horiz
-                MultiProgression.prog temp = multiProg.progFiles[i];
-                temp.currFile = EditorGUILayout.Popup(multiProg.progFiles[i].currFile, fileNames.ToArray(), GUILayout.MaxWidth(200f));
-                
-                temp.FileName = fileNames[temp.currFile];
-                multiProg.progFiles[i] = temp;
-                
-                multiProg.progFiles[i].load();
 
-                #endregion
-                EditorGUILayout.EndHorizontal();
-                
-                if (multiProg.progFiles[i].loaded)
-                {
-                    
-                    EditorGUILayout.LabelField("Loaded: " + multiProg.progFiles[i].p.progName);
-                    
-                    ShowStaff(multiProg.progFiles[i].p);
-                    
-                    
-                    
-                    EditorGUILayout.BeginHorizontal();
-                    #region horiz
-                    ChordNotation[] chordProgression = multiProg.progFiles[i].p.prog;
-                    for (int j = 0; j < chordProgression.Length; j++)
-                    {
-                        
-                        ChordNotation chord = chordProgression[j];
-                        
-                        EditorGUILayout.BeginVertical("box", GUILayout.MinWidth(__chordBoxMinWidth), GUILayout.MaxWidth(__chordBoxMaxWidth));
-                        #region vertBox
-                        EditorGUILayout.LabelField(chord.noteLen.ToString(), GUILayout.MinWidth(__chordBoxMinWidth));
-                        EditorGUILayout.LabelField(chord.chordType.ToString(), GUILayout.MinWidth(__chordBoxMinWidth));
-                        EditorGUILayout.LabelField(chord.chordBase.ToString(), GUILayout.MinWidth(__chordBoxMinWidth));
-                        EditorGUILayout.LabelField(chord.playOn.ToString(), GUILayout.MinWidth(__chordBoxMinWidth));
-                        
-                        EditorGUILayout.BeginHorizontal();
-                        #region horiz
-                        for (int k = 0; k < chord.Counts.Length; k++)
-                        {
-                            GUILayout.Toggle(chord.Counts[k], "", __smallTogglesOptions);
-                        }
-                        #endregion
-                        EditorGUILayout.EndHorizontal();
-                        #endregion
-                        EditorGUILayout.EndVertical();
-                    }
-                    #endregion
-                    EditorGUILayout.EndHorizontal();
-                    
-                }
-                else
-                {
-                    EditorGUILayout.LabelField("Not Loaded");
-                }
-                #endregion
-                EditorGUILayout.EndVertical();
-        
-            }
+            ShowProgressions();
+
+
             #endregion
             EditorGUILayout.EndScrollView();
             #endregion
@@ -229,6 +187,25 @@ public class MultiProgressionEditor : EditorWindow
             }
         }
         
+        
+        if (swaps.Count > 0)
+        {
+            foreach (swap s in swaps)
+            {
+                MultiProgression.prog p = multiProg.ProgFiles[s.x1];
+                multiProg.ProgFiles[s.x1] = multiProg.ProgFiles[s.x2];
+                multiProg.ProgFiles[s.x2] = p;
+            }
+            swaps = new List<swap>();
+        }
+        if (removes.Count > 0)
+        {
+            foreach (int r in removes)
+            {
+                multiProg.ProgFiles.RemoveAt(r);
+            }
+            removes = new List<int>();
+        }
         
     }
 
@@ -299,5 +276,104 @@ public class MultiProgressionEditor : EditorWindow
         }
         #endregion
         EditorGUILayout.EndHorizontal();
+    }
+
+    void ShowProgressions()
+    {
+        for (int i = 0; i < multiProg.ProgFiles.Count; i++)
+        {
+
+            EditorGUILayout.BeginVertical("box");
+            #region vertBox
+            EditorGUILayout.BeginHorizontal();
+            #region horiz
+            MultiProgression.prog temp = multiProg.progFiles[i];
+            temp.currFile = EditorGUILayout.Popup(multiProg.progFiles[i].currFile, fileNames.ToArray(), GUILayout.MaxWidth(200f));
+
+            temp.FileName = fileNames[temp.currFile];
+            multiProg.progFiles[i] = temp;
+
+            multiProg.progFiles[i].load();
+
+            EditorGUILayout.BeginHorizontal();
+            #region Control buttons
+            if (i != multiProg.ProgFiles.Count - 1)
+            {
+                if (GUILayout.Button("\\/", __controlButtonOptions))
+                {
+                    swaps.Add(new swap(i, i+1));
+                }
+            }
+
+            if (i != 0)
+            {
+                if (GUILayout.Button("/\\", __controlButtonOptions))
+                {
+                    swaps.Add(new swap(i, i - 1));
+                }
+            }
+
+            Color preColor = GUI.backgroundColor;
+            GUI.backgroundColor = Color.red;
+            GUILayout.FlexibleSpace();
+            if (GUILayout.Button("X", __controlButtonOptions))
+            {
+                removes.Add(i);
+            }
+            GUI.backgroundColor = preColor;
+            #endregion
+            EditorGUILayout.EndHorizontal();
+
+            #endregion
+            EditorGUILayout.EndHorizontal();
+
+            if (multiProg.progFiles[i].loaded)
+            {
+
+                EditorGUILayout.LabelField("Loaded: " + multiProg.progFiles[i].p.progName);
+
+                ShowStaff(multiProg.progFiles[i].p);
+
+
+
+                EditorGUILayout.BeginHorizontal();
+                #region horiz
+                ChordNotation[] chordProgression = multiProg.progFiles[i].p.prog;
+                for (int j = 0; j < chordProgression.Length; j++)
+                {
+
+                    ChordNotation chord = chordProgression[j];
+
+                    EditorGUILayout.BeginVertical("box", GUILayout.MinWidth(__chordBoxMinWidth), GUILayout.MaxWidth(__chordBoxMaxWidth));
+                    #region vertBox
+                    EditorGUILayout.LabelField(chord.noteLen.ToString(), GUILayout.MinWidth(__chordBoxMinWidth));
+                    EditorGUILayout.LabelField(chord.chordType.ToString(), GUILayout.MinWidth(__chordBoxMinWidth));
+                    EditorGUILayout.LabelField(chord.chordBase.ToString(), GUILayout.MinWidth(__chordBoxMinWidth));
+                    EditorGUILayout.LabelField(chord.playOn.ToString(), GUILayout.MinWidth(__chordBoxMinWidth));
+
+                    EditorGUILayout.BeginHorizontal();
+                    #region horiz
+                    for (int k = 0; k < chord.Counts.Length; k++)
+                    {
+                        GUILayout.Toggle(chord.Counts[k], "", __smallTogglesOptions);
+                    }
+                    #endregion
+                    EditorGUILayout.EndHorizontal();
+                    #endregion
+                    EditorGUILayout.EndVertical();
+                }
+                #endregion
+                EditorGUILayout.EndHorizontal();
+
+            }
+            else
+            {
+                EditorGUILayout.LabelField("Not Loaded");
+            }
+            #endregion
+            EditorGUILayout.EndVertical();
+
+
+        }
     }
 }

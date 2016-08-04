@@ -4,11 +4,20 @@ using System.Collections;
 [System.Serializable]
 public static class ConstFile
 {
+    public static bool DEBUG = true;
+
+    public enum Team
+    {
+        LEFT,
+        RIGHT,
+    }
+
 	public enum PuppetType
 	{
-		BASS,
-		TREBLE,
-		TOWER,
+		ROCK,
+        PAPER,
+        SCISSOR,
+        TOWER,
 	}
 
 	public enum Direction : int
