@@ -108,13 +108,12 @@ public class ChordNotation
 
 	public string[] GetChord(int b, int[] scaleArray, string[] sampleArray)
 	{
-		Debug.Log(BaseInt);
 		switch (chordType)
 		{
 			case CHORD_TYPE.TRIAD:
 				return MusicUtil.CreateMajorChord(BaseInt, scaleArray, sampleArray);
-			case CHORD_TYPE.MINOR:
-				return MusicUtil.CreateMinorChord(BaseInt, scaleArray, sampleArray);
+            case CHORD_TYPE.SEVEN:
+                return MusicUtil.CreateSevenChord(BaseInt, scaleArray, sampleArray);
 			default:
 				throw new System.Exception(string.Format("Unknown chord type: {0} {1}", chordType, chordBase));
 		}
@@ -220,6 +219,12 @@ public class MusicManager : GameMono
 
 		keyScale = MusicUtil.GetScaleArray(baseKey);
 
+        string temp = "";
+        foreach (int k in keyScale)
+        {
+            temp += " " + (ConstFile.NOTE)k;
+        }
+        Debug.Log("Key Scale: "+temp);
         multiProg = ScriptableObject.CreateInstance<MultiProgression>() as MultiProgression;
         multiProg.Init();
         Debug.Log("opening "+ Path.Combine("Assets/Resources/MultiProgressions", string.Format("{0}", multiProgName)));
@@ -229,7 +234,7 @@ public class MusicManager : GameMono
         for (int i = 0; i < multiProg.progFiles.Count; i++)
         {
             progressions.Add(multiProg.progFiles[i].p);
-            print("Added "+ multiProg.progFiles[i].p.progName);
+            //print("Added "+ multiProg.progFiles[i].p.progName);
         }
         currProgression = progressions[progressions.Count - 1];
 	}

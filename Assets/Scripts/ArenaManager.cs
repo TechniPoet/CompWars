@@ -21,7 +21,7 @@ public class ArenaManager : UnitySingleton<ArenaManager>
 
     public static float nodeWidth, nodeHeight;
 
-    ArenaNode[,] nodeGrid;
+    public ArenaNode[,] nodeGrid;
 
     [Header("Prefabs")]
     public GameObject linePrefab;
@@ -43,7 +43,7 @@ public class ArenaManager : UnitySingleton<ArenaManager>
 	void Update () {
 	
 	}
-
+    
     public Vector2 GridToWorld(Vector2 loc)
     {
         return GridToWorld((int)loc.x, (int)loc.y);
@@ -53,9 +53,12 @@ public class ArenaManager : UnitySingleton<ArenaManager>
     {
         return nodeGrid[x, y].worldPosition;
     }
+
+
     
     #region Grid Creation
 
+    [BitStrap.Button]
     public void GenerateGrid()
 	{
         FindArenaDimensions();

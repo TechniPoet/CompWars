@@ -6,6 +6,8 @@ public static class ConstFile
 {
     public static bool DEBUG = true;
 
+    public static int SAMPLE_RATE = 44100;
+
     public enum Team
     {
         LEFT,
@@ -19,6 +21,12 @@ public static class ConstFile
         SCISSOR,
         TOWER,
 	}
+
+    public enum BOOLEAN
+    {
+        GREATER_THAN,
+        LESS_THAN,
+    }
 
 	public enum Direction : int
 	{
@@ -97,7 +105,7 @@ public static class ConstFile
 	public enum CHORD_TYPE
 	{
 		TRIAD,
-		MINOR,
+		SEVEN,
 	}
 
 	public enum ROMAN_NUMBERAL : int

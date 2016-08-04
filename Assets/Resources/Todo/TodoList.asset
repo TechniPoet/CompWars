@@ -44,8 +44,32 @@ MonoBehaviour:
     task: grid
     isComplete: 1
   - owner:
+      name: In Progress
+      color: {r: 0, g: 1, b: 1, a: 1}
+      index: 2
+    task: single unit/move/scene/for testing audio
+    isComplete: 1
+  - owner:
       name: Normal
       color: {r: 1, g: 1, b: 1, a: 1}
       index: 0
-    task: single unit/move/scene/for testing audio
+    task: Create serializable instructions class
+    isComplete: 0
+  - owner:
+      name: Normal
+      color: {r: 1, g: 1, b: 1, a: 1}
+      index: 0
+    task: Prototype stretching bar. Unit to playhead
+    isComplete: 0
+  - owner:
+      name: Normal
+      color: {r: 1, g: 1, b: 1, a: 1}
+      index: 0
+    task: Rule Editor
+    isComplete: 0
+  - owner:
+      name: Normal
+      color: {r: 1, g: 1, b: 1, a: 1}
+      index: 0
+    task: Attacks
     isComplete: 0

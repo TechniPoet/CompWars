@@ -28,15 +28,15 @@ public class MusicManagerEditor : Editor
 	public override void OnInspectorGUI()
 	{
         
-		//DrawDefaultInspector();
-        
+		DrawDefaultInspector();
+        /*
         m.sampleBank = (GATActiveSampleBank)EditorGUILayout.ObjectField("Sample Bank", m.sampleBank, typeof (GATActiveSampleBank), true);
         m.toLoad = (GATSoundBank)EditorGUILayout.ObjectField("Sound Bank to Load", m.toLoad, typeof(GATSoundBank), true);
         m.mainPulse = (MasterPulseModule)EditorGUILayout.ObjectField("Main Pulse", m.mainPulse, typeof(MasterPulseModule), true);
         m.pulser = (PulseScript)EditorGUILayout.ObjectField("Pulser", m.pulser, typeof(PulseScript), true);
         m.playHead = (Transform)EditorGUILayout.ObjectField("Play Head", m.playHead, typeof(Transform));
         m.key = (ConstFile.NOTE)EditorGUILayout.EnumPopup("Key", m.key);
-        
+        */
         EditorGUILayout.LabelField("Chord Progressions");
 
         DirectoryInfo dir = new DirectoryInfo("Assets/Resources/MultiProgressions");
@@ -61,7 +61,6 @@ public class MusicManagerEditor : Editor
                 GUILayout.Label(p.progName);
             }
         }
-        target = m;
 
         /*
 		if (__boxStyle == null)

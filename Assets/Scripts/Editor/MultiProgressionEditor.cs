@@ -39,7 +39,6 @@ public class MultiProgressionEditor : EditorWindow
     FileInfo[] progFiles;
 
     Vector2 scrollPos;
-    bool shouldAddProgression = false;
 
     List<swap> swaps = new List<swap>();
     List<int> removes = new List<int>();

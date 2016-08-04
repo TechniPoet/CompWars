@@ -21,7 +21,10 @@ public abstract class Puppet : Mortal
     public GameObject quarter;
     public GameObject eigth;
     public GameObject sixteenth;
-    
+
+    public ArenaNode currNode;
+
+    public Instructions instructions;
 
     protected virtual void Start()
     {
@@ -100,6 +103,8 @@ public abstract class Puppet : Mortal
         gridLocation = newLoc;
         UnitManager.Instance.AddUnit += EnemyAdd;
         UnitManager.Instance.RemoveUnit += EnemyRemove;
+        ArenaNode n = ArenaManager.Instance.nodeGrid[(int)newLoc.x, (int)newLoc.y];
+        n.AddPuppet(this);
     }
 
     [BitStrap.Button]

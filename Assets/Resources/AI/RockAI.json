@@ -1,0 +1,31 @@
+{
+    "instructs": [
+        {
+            "cond1": 0,
+            "comp": 1,
+            "cond2": 2,
+            "cond1Val": 20.0,
+            "cond2Val": 200.0,
+            "action": 1,
+            "length": 2
+        },
+        {
+            "cond1": 0,
+            "comp": 0,
+            "cond2": 0,
+            "cond1Val": 0.0,
+            "cond2Val": 0.0,
+            "action": 0,
+            "length": 0
+        },
+        {
+            "cond1": 0,
+            "comp": 0,
+            "cond2": 0,
+            "cond1Val": 0.0,
+            "cond2Val": 0.0,
+            "action": 0,
+            "length": 0
+        }
+    ]
+}
