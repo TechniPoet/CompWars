@@ -242,6 +242,7 @@ public class MusicManager : GameMono
 
 	void Play(int i)
 	{
+		/*
         currBeat = i;
 		if (i % 16 == 0)
 		{
@@ -260,8 +261,10 @@ public class MusicManager : GameMono
 			EighthBeat((i / 2));
 		}
 		SixteenthBeat(i);
+		*/
         playHead.transform.localScale = new Vector3(ArenaManager.nodeWidth*4, playHead.transform.localScale.y, playHead.transform.localScale.z);
         playHead.transform.position = new Vector3(ArenaManager.leftSide.x + ((ArenaManager.screenWidth/16)*(i+.5f)), ArenaManager.midPoint.y, 0);
+		
     }
 
 

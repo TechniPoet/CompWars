@@ -126,7 +126,7 @@ public class PulseBaseInspector : GATBaseInspector
 			GUILayout.Label( bpm.ToString( "0.0" ), GUILayout.Width( 35f ) ); 
 
 
-			_basePulse.Period =  ( double )( 60f / ( GUILayout.HorizontalSlider( bpm, 30f, 320f, GUILayout.Width( 200f ) ) ) );
+			_basePulse.Period =  ( double )( 60f / ( GUILayout.HorizontalSlider( bpm, 15f, 320f, GUILayout.Width( 200f ) ) ) );
 
 			if( updateFloatField || GUI.changed )
 			{

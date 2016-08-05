@@ -32,7 +32,11 @@ public class RockUnit : Puppet
     {
         if (currNode.right != null)
         {
-            currNode.right.AddPuppet(this);
+            if (currNode.right.AddPuppet(this))
+			{
+				currNode.left.RemovePuppet();
+			}
+
         }
     }
 
@@ -41,7 +45,10 @@ public class RockUnit : Puppet
     {
         if (currNode.left != null)
         {
-            currNode.left.AddPuppet(this);
+            if (currNode.left.AddPuppet(this))
+			{
+				currNode.right.RemovePuppet();
+			}
         }
     }
     #endregion
