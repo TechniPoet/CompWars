@@ -50,9 +50,9 @@ MonoBehaviour:
     task: single unit/move/scene/for testing audio
     isComplete: 1
   - owner:
-      name: Normal
-      color: {r: 1, g: 1, b: 1, a: 1}
-      index: 0
+      name: In Progress
+      color: {r: 0, g: 1, b: 1, a: 1}
+      index: 2
     task: Create serializable instructions class
     isComplete: 0
   - owner:

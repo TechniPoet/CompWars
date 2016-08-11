@@ -7,6 +7,7 @@ using System.IO;
 using GAudio;
 
 [CustomEditor(typeof(MusicManager))]
+[System.Serializable]
 public class MusicManagerEditor : Editor
 {
 	protected MusicManager m;
@@ -17,7 +18,6 @@ public class MusicManagerEditor : Editor
 	protected static GUIStyle __boxStyle;
 	protected static Color __blueColor = new Color(.7f, .7f, 1f);
 	protected static Color __purpleColor = new Color(.8f, .6f, 1f);
-    int load = 0;
 
 	void Awake()
     {
@@ -28,15 +28,15 @@ public class MusicManagerEditor : Editor
 	public override void OnInspectorGUI()
 	{
         
-		DrawDefaultInspector();
-        /*
+		//DrawDefaultInspector();
+        
         m.sampleBank = (GATActiveSampleBank)EditorGUILayout.ObjectField("Sample Bank", m.sampleBank, typeof (GATActiveSampleBank), true);
         m.toLoad = (GATSoundBank)EditorGUILayout.ObjectField("Sound Bank to Load", m.toLoad, typeof(GATSoundBank), true);
         m.mainPulse = (MasterPulseModule)EditorGUILayout.ObjectField("Main Pulse", m.mainPulse, typeof(MasterPulseModule), true);
         m.pulser = (PulseScript)EditorGUILayout.ObjectField("Pulser", m.pulser, typeof(PulseScript), true);
-        m.playHead = (Transform)EditorGUILayout.ObjectField("Play Head", m.playHead, typeof(Transform));
+        m.playHead = (Transform)EditorGUILayout.ObjectField("Play Head", m.playHead, typeof(Transform), true);
         m.key = (ConstFile.NOTE)EditorGUILayout.EnumPopup("Key", m.key);
-        */
+        
         EditorGUILayout.LabelField("Chord Progressions");
 
         DirectoryInfo dir = new DirectoryInfo("Assets/Resources/MultiProgressions");
@@ -46,8 +46,8 @@ public class MusicManagerEditor : Editor
         {
             fileNames.Add(files[i].Name);
         }
-        load = EditorGUILayout.Popup(load, fileNames.ToArray());
-        m.multiProgName = fileNames[load];
+        m.loadInd = EditorGUILayout.Popup(m.loadInd, fileNames.ToArray());
+        m.MultiProgName = fileNames[m.loadInd];
 
         GUILayout.Label("Curr Progression Index: "+ m.progressionInd);
         GUILayout.Label("Beat: "+ m.currBeat);
@@ -61,6 +61,11 @@ public class MusicManagerEditor : Editor
                 GUILayout.Label(p.progName);
             }
         }
+
+		if (GUI.changed)
+		{
+			EditorUtility.SetDirty(m);
+		}
 
         /*
 		if (__boxStyle == null)

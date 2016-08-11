@@ -9,7 +9,7 @@ public class RockUnit : Puppet
     protected override void Start()
     {
         base.Start();
-        instructions = new Instructions();
+        instructions = ScriptableObject.CreateInstance<Instructions>();
         JsonUtility.FromJsonOverwrite(File.ReadAllText(Path.Combine("Assets/Resources/AI", "RockAI.json")), instructions);
     }
 

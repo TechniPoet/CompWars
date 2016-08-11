@@ -185,8 +185,20 @@ public class MusicManager : GameMono
 
     [SerializeField]
     public MultiProgression multiProg;
-    [SerializeField]
-    public string multiProgName;
+	[SerializeField]
+	private string multiProgName;
+
+    public string MultiProgName
+	{
+		get
+		{
+			return multiProgName;
+		}
+		set
+		{
+			multiProgName = value;
+		}
+	}
 
 	GATEnvelope wholeNoteEnv;
 	GATEnvelope halfNoteEnv;
@@ -205,10 +217,21 @@ public class MusicManager : GameMono
 
 	int[] majorProgression = new int[] { 0, 3, 4, 0 };
 	int[] scaleSteps = new int[] { 0, 2, 2, 1, 2, 2, 2 };
+
+    Dictionary<ConstFile.NoteLen, List<Puppet>> noteList = new Dictionary<ConstFile.NoteLen, List<Puppet>>
+    {
+        {ConstFile.NoteLen.SIXTEENTH, new List<Puppet>()},
+        {ConstFile.NoteLen.EIGHTH, new List<Puppet>()},
+        {ConstFile.NoteLen.QUARTER, new List<Puppet>()},
+        {ConstFile.NoteLen.HALF, new List<Puppet>()},
+        {ConstFile.NoteLen.WHOLE, new List<Puppet>()},
+    };
     
     public int currBeat = 0;
     [SerializeField]
     public Transform playHead;
+	[SerializeField]
+	public int loadInd;
 
 	// Use this for initialization
 	void Awake ()
@@ -227,8 +250,8 @@ public class MusicManager : GameMono
         Debug.Log("Key Scale: "+temp);
         multiProg = ScriptableObject.CreateInstance<MultiProgression>() as MultiProgression;
         multiProg.Init();
-        Debug.Log("opening "+ Path.Combine("Assets/Resources/MultiProgressions", string.Format("{0}", multiProgName)));
-        JsonUtility.FromJsonOverwrite(File.ReadAllText(Path.Combine("Assets/Resources/MultiProgressions", string.Format("{0}", "145 Test.json"))), multiProg);
+        Debug.Log("opening "+ Path.Combine("Assets/Resources/MultiProgressions", string.Format("{0}", MultiProgName)));
+        JsonUtility.FromJsonOverwrite(File.ReadAllText(Path.Combine("Assets/Resources/MultiProgressions", string.Format("{0}", MultiProgName))), multiProg);
         multiProg.Load();
 
         for (int i = 0; i < multiProg.progFiles.Count; i++)
@@ -242,29 +265,84 @@ public class MusicManager : GameMono
 
 	void Play(int i)
 	{
-		/*
+		
         currBeat = i;
 		if (i % 16 == 0)
 		{
 			WholeBeat(i);
-		}
+            EvokeChoices(ConstFile.NoteLen.WHOLE);
+        }
 		if (i % 8 == 0)
 		{
 			HalfBeat((i / 8));
-		}
+            EvokeChoices(ConstFile.NoteLen.HALF);
+        }
 		if (i % 4 == 0)
 		{
 			QuarterBeat((i / 4));
-		}
+            EvokeChoices(ConstFile.NoteLen.QUARTER);
+        }
 		if (i % 2 == 0)
 		{
 			EighthBeat((i / 2));
-		}
+            EvokeChoices(ConstFile.NoteLen.EIGHTH);
+        }
 		SixteenthBeat(i);
-		*/
+        EvokeChoices(ConstFile.NoteLen.SIXTEENTH);
+
+
+
+        List<Puppet> hitUnits = ArenaManager.Instance.GetUnitsFromBeat(i);
+
+        for (int j = 0; j < hitUnits.Count; j++)
+        {
+            noteList[hitUnits[j].currNote].Add(hitUnits[j]);
+            hitUnits[j].MakeDecision();
+            if (ConstFile.ACTION_CHOICE == ConstFile.ActionTime.IMMEDIATE)
+            {
+                hitUnits[j].MakeDecision();
+                noteList[hitUnits[j].currNote].Remove(hitUnits[j]);
+            }
+        }
+
         playHead.transform.localScale = new Vector3(ArenaManager.nodeWidth*4, playHead.transform.localScale.y, playHead.transform.localScale.z);
         playHead.transform.position = new Vector3(ArenaManager.leftSide.x + ((ArenaManager.screenWidth/16)*(i+.5f)), ArenaManager.midPoint.y, 0);
 		
+    }
+
+    void EvokeChoices(ConstFile.NoteLen noteLen)
+    {
+        foreach (Puppet p in noteList[noteLen])
+        {
+            p.ExecuteChoice();
+            GATEnvelope env = null;
+            switch (p.currNote)
+            {
+                case ConstFile.NoteLen.SIXTEENTH:
+                    env = sixteenthNoteEnv;
+                    break;
+                case ConstFile.NoteLen.EIGHTH:
+                    env = eighthNoteEnv;
+                    break;
+                case ConstFile.NoteLen.QUARTER:
+                    env = quarterNoteEnv;
+                    break;
+                case ConstFile.NoteLen.HALF:
+                    env = halfNoteEnv;
+                    break;
+                case ConstFile.NoteLen.WHOLE:
+                    env = wholeNoteEnv;
+                    break;
+            }
+            if (env == null)
+            {
+                env = eighthNoteEnv;
+            }
+            IGATProcessedSample sample;
+            sample = sampleBank.GetProcessedSample(string.Format(ConstFile.PIANO_NOTES[2], 3), env);
+            sample.Play(0);
+        }
+        noteList[noteLen].Clear();
     }
 
 

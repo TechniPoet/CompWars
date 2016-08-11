@@ -8,6 +8,15 @@ public static class ConstFile
 
     public static int SAMPLE_RATE = 44100;
 
+    public static ActionTime ACTION_CHOICE = ActionTime.DELAYED;
+
+
+    public enum ActionTime
+    {
+        IMMEDIATE,
+        DELAYED,
+    }
+
     public enum Team
     {
         LEFT,

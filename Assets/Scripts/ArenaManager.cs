@@ -55,7 +55,44 @@ public class ArenaManager : UnitySingleton<ArenaManager>
     }
 
 
+    /// <summary>
+    /// Given the beat, return all the units that are there.
+    /// </summary>
+    /// <param name="beat"></param>
+    /// <returns></returns>
+	public List<Puppet> GetUnitsFromBeat(int beat)
+	{
+		List<Puppet> ret = new List<Puppet>();
+		int rowsPerBeat = (nodesWide+1)/16;
+        // Collect puppets for left team
+        for (int x = 0 + rowsPerBeat*beat; x < rowsPerBeat * (beat+1); x++)
+        {
+            for (int y = 0; y < nodesHigh; y++)
+            {
+                if (nodeGrid[x,y].onNode != null && nodeGrid[x, y].onNode.team == ConstFile.Team.LEFT)
+                {
+                    ret.Add(nodeGrid[x, y].onNode);
+                }
+            }
+        }
+        // Collect puppets for right team
+        for (int x = nodesWide; x > nodesWide - (rowsPerBeat * (beat + 1)); x--)
+        {
+            for (int y = 0; y < nodesHigh; y++)
+            {
+                if (nodeGrid[x, y].onNode != null && nodeGrid[x, y].onNode.team == ConstFile.Team.RIGHT)
+                {
+                    ret.Add(nodeGrid[x, y].onNode);
+                }
+            }
+        }
+        return ret;
+	}
     
+
+    
+
+
     #region Grid Creation
 
     [BitStrap.Button]
@@ -138,7 +175,7 @@ public class ArenaManager : UnitySingleton<ArenaManager>
         }
     }
 
-
+	[BitStrap.Button]
     public void ClearLines()
     {
         foreach (GameObject line in lines)
@@ -146,7 +183,20 @@ public class ArenaManager : UnitySingleton<ArenaManager>
             DestroyImmediate(line);
         }
         lines.Clear();
-    }
+		
+		while (vertLineParent.childCount != 0)
+		{
+			DestroyImmediate(vertLineParent.GetChild(0).gameObject);
+		}
+		while (horizLineParent.childCount != 0)
+		{
+			DestroyImmediate(horizLineParent.GetChild(0).gameObject);
+		}
+        while (nodeGridParent.childCount != 0)
+        {
+            DestroyImmediate(nodeGridParent.GetChild(0).gameObject);
+        }
+	}
 
     public void FindArenaDimensions()
     {
