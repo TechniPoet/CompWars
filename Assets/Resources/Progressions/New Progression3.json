@@ -1,0 +1,33 @@
+{
+    "progName": "New Progression3",
+    "prog": [
+        {
+            "chordName": "",
+            "isOn": false,
+            "chordBase": 0,
+            "chordType": 0,
+            "playOn": 2,
+            "noteLen": 1,
+            "counts": [
+                1,
+                0,
+                1,
+                0
+            ]
+        },
+        {
+            "chordName": "",
+            "isOn": false,
+            "chordBase": 2,
+            "chordType": 0,
+            "playOn": 2,
+            "noteLen": 1,
+            "counts": [
+                0,
+                1,
+                0,
+                1
+            ]
+        }
+    ]
+}

@@ -1,6 +1,178 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using GAudio;
+using ROMAN_NUM = ConstFile.ROMAN_NUMBERAL;
+using CHORD_TYPE = ConstFile.CHORD_TYPE;
+using System.IO;
+
+[System.Serializable]
+public class ChordNotation
+{
+	bool intSet = false;
+	public string chordName;
+	public bool isOn;
+	int baseInt = -1;
+	public int BaseInt
+	{
+		get
+		{
+			if (!intSet)
+			{
+				baseInt = (int)chordBase;
+				intSet = true;
+			}
+			return baseInt;
+		}
+	}
+	public ROMAN_NUM chordBase;
+	public CHORD_TYPE chordType;
+	public ConstFile.NoteLen playOn;
+	public ConstFile.NoteLen PlayOn
+	{
+		get
+		{
+			return playOn;
+		}
+
+		set
+		{
+			if (value != playOn)
+			{
+				Counts = null;
+			}
+			playOn = value;
+		}
+	}
+	public ConstFile.NoteLen noteLen;
+	[SerializeField]
+	bool[] counts;
+	public bool[] Counts
+	{
+		get
+		{
+			if (counts == null)
+			{
+				int num = 1;
+				switch (PlayOn)
+				{
+					case ConstFile.NoteLen.WHOLE:
+						num = 1;
+						break;
+					case ConstFile.NoteLen.HALF:
+						num = 2;
+						break;
+					case ConstFile.NoteLen.QUARTER:
+						num = 4;
+						break;
+					case ConstFile.NoteLen.EIGHTH:
+						num = 8;
+						break;
+					case ConstFile.NoteLen.SIXTEENTH:
+						num = 16;
+						break;
+				}
+
+				counts = new bool[num];
+			}
+			return counts;
+		}
+
+		set
+		{
+			counts = value;
+		}
+	}
+
+	public ChordNotation() : this(ROMAN_NUM.I, CHORD_TYPE.TRIAD)
+	{
+	}
+
+	public ChordNotation(ROMAN_NUM b, CHORD_TYPE t) : this(b,t, ConstFile.NoteLen.QUARTER, -1)
+	{
+		chordBase = b;
+		chordType = t;
+		PlayOn = ConstFile.NoteLen.QUARTER;
+	}
+
+	public ChordNotation(ROMAN_NUM b, CHORD_TYPE t, ConstFile.NoteLen on, int cnt)
+	{
+		chordBase = b;
+		chordType = t;
+		PlayOn = on;
+
+		for (int i = 0; i < Counts.Length; i++)
+		{
+			Counts[i] = cnt == i ? true : false;
+		}
+	}
+
+	public string[] GetChord(int b, int[] scaleArray, string[] sampleArray)
+	{
+		switch (chordType)
+		{
+			case CHORD_TYPE.TRIAD:
+				return MusicUtil.CreateMajorChord(BaseInt, scaleArray, sampleArray);
+            case CHORD_TYPE.SEVEN:
+                return MusicUtil.CreateSevenChord(BaseInt, scaleArray, sampleArray);
+			default:
+				throw new System.Exception(string.Format("Unknown chord type: {0} {1}", chordType, chordBase));
+		}
+	}
+}
+
+[System.Serializable]
+public class Progression : ScriptableObject
+{
+	public string progName;
+	public ChordNotation[] prog;
+
+	List<ChordNotation> toRemove = new List<ChordNotation>();
+
+	public void Init(ChordNotation[] _progression)
+	{
+		prog = _progression;
+	}
+
+	public void Init()
+	{
+		prog = new ChordNotation[] { };
+		progName = "New Progression";
+	}
+
+	public void AddChord()
+	{
+		List<ChordNotation> chords = new List<ChordNotation>(prog);
+		chords.Add(new ChordNotation());
+		prog = chords.ToArray();
+	}
+
+	public void RemoveChord(ChordNotation i)
+	{
+		toRemove.Add(i);
+	}
+
+	public void Clean()
+	{
+		List<ChordNotation> chords = new List<ChordNotation>(prog);
+		foreach (ChordNotation c in toRemove)
+		{
+			chords.Remove(c);
+		}
+		prog = chords.ToArray();
+	}
+
+	public ChordNotation this[int index]
+	{
+		get
+		{
+			return prog[index];
+		}
+		set
+		{
+			prog[index] = value;
+		}
+	}
+}
 
 public class MusicManager : GameMono
 {
@@ -11,19 +183,55 @@ public class MusicManager : GameMono
 	public MasterPulseModule mainPulse;
 	public PulseScript pulser;
 
+    [SerializeField]
+    public MultiProgression multiProg;
+	[SerializeField]
+	private string multiProgName;
+
+    public string MultiProgName
+	{
+		get
+		{
+			return multiProgName;
+		}
+		set
+		{
+			multiProgName = value;
+		}
+	}
+
 	GATEnvelope wholeNoteEnv;
 	GATEnvelope halfNoteEnv;
 	GATEnvelope quarterNoteEnv;
 	GATEnvelope eighthNoteEnv;
 	GATEnvelope sixteenthNoteEnv;
 
-	ConstFile.NOTE key = ConstFile.NOTE.C;
+	public ConstFile.NOTE key = ConstFile.NOTE.C;
 
 	int[] keyScale;
 
+	public List<Progression> progressions = new List<Progression>();
+    public Progression currProgression;
+	
+	public int progressionInd = 0;
+
 	int[] majorProgression = new int[] { 0, 3, 4, 0 };
-	int[] majorChord = new int[] { 0, 2, 4 };
 	int[] scaleSteps = new int[] { 0, 2, 2, 1, 2, 2, 2 };
+
+    Dictionary<ConstFile.NoteLen, List<Puppet>> noteList = new Dictionary<ConstFile.NoteLen, List<Puppet>>
+    {
+        {ConstFile.NoteLen.SIXTEENTH, new List<Puppet>()},
+        {ConstFile.NoteLen.EIGHTH, new List<Puppet>()},
+        {ConstFile.NoteLen.QUARTER, new List<Puppet>()},
+        {ConstFile.NoteLen.HALF, new List<Puppet>()},
+        {ConstFile.NoteLen.WHOLE, new List<Puppet>()},
+    };
+    
+    public int currBeat = 0;
+    [SerializeField]
+    public Transform playHead;
+	[SerializeField]
+	public int loadInd;
 
 	// Use this for initialization
 	void Awake ()
@@ -32,41 +240,110 @@ public class MusicManager : GameMono
 		SetupEnvelopes();
 		int baseKey = (int)key;
 
-		keyScale = new int[7];
-		for (int i = 0; i < scaleSteps.Length; i++)
-		{
-			
-			baseKey += scaleSteps[i];
-			baseKey %= 12;
-			keyScale[i] = baseKey;
-			Debug.Log(ConstFile.PIANO_NOTES[baseKey] + " " + baseKey);
-		}
+		keyScale = MusicUtil.GetScaleArray(baseKey);
+
+        string temp = "";
+        foreach (int k in keyScale)
+        {
+            temp += " " + (ConstFile.NOTE)k;
+        }
+        Debug.Log("Key Scale: "+temp);
+        multiProg = ScriptableObject.CreateInstance<MultiProgression>() as MultiProgression;
+        multiProg.Init();
+        Debug.Log("opening "+ Path.Combine("Assets/Resources/MultiProgressions", string.Format("{0}", MultiProgName)));
+        JsonUtility.FromJsonOverwrite(File.ReadAllText(Path.Combine("Assets/Resources/MultiProgressions", string.Format("{0}", MultiProgName))), multiProg);
+        multiProg.Load();
+
+        for (int i = 0; i < multiProg.progFiles.Count; i++)
+        {
+            progressions.Add(multiProg.progFiles[i].p);
+            //print("Added "+ multiProg.progFiles[i].p.progName);
+        }
+        currProgression = progressions[progressions.Count - 1];
 	}
 
 
 	void Play(int i)
 	{
-		//GATData mySampleData = sampleBank.GetAudioData("piano_5_B");
-		//GATManager.DefaultPlayer.PlayData(mySampleData, 0, 1);
-		//i = i - 1;
+		
+        currBeat = i;
 		if (i % 16 == 0)
 		{
 			WholeBeat(i);
-		}
+            EvokeChoices(ConstFile.NoteLen.WHOLE);
+        }
 		if (i % 8 == 0)
 		{
 			HalfBeat((i / 8));
-		}
+            EvokeChoices(ConstFile.NoteLen.HALF);
+        }
 		if (i % 4 == 0)
 		{
 			QuarterBeat((i / 4));
-		}
+            EvokeChoices(ConstFile.NoteLen.QUARTER);
+        }
 		if (i % 2 == 0)
 		{
 			EighthBeat((i / 2));
-		}
+            EvokeChoices(ConstFile.NoteLen.EIGHTH);
+        }
 		SixteenthBeat(i);
-	}
+        EvokeChoices(ConstFile.NoteLen.SIXTEENTH);
+
+
+
+        List<Puppet> hitUnits = ArenaManager.Instance.GetUnitsFromBeat(i);
+
+        for (int j = 0; j < hitUnits.Count; j++)
+        {
+            noteList[hitUnits[j].currNote].Add(hitUnits[j]);
+            hitUnits[j].MakeDecision();
+            if (ConstFile.ACTION_CHOICE == ConstFile.ActionTime.IMMEDIATE)
+            {
+                hitUnits[j].MakeDecision();
+                noteList[hitUnits[j].currNote].Remove(hitUnits[j]);
+            }
+        }
+
+        playHead.transform.localScale = new Vector3(ArenaManager.nodeWidth*4, playHead.transform.localScale.y, playHead.transform.localScale.z);
+        playHead.transform.position = new Vector3(ArenaManager.leftSide.x + ((ArenaManager.screenWidth/16)*(i+.5f)), ArenaManager.midPoint.y, 0);
+		
+    }
+
+    void EvokeChoices(ConstFile.NoteLen noteLen)
+    {
+        foreach (Puppet p in noteList[noteLen])
+        {
+            p.ExecuteChoice();
+            GATEnvelope env = null;
+            switch (p.currNote)
+            {
+                case ConstFile.NoteLen.SIXTEENTH:
+                    env = sixteenthNoteEnv;
+                    break;
+                case ConstFile.NoteLen.EIGHTH:
+                    env = eighthNoteEnv;
+                    break;
+                case ConstFile.NoteLen.QUARTER:
+                    env = quarterNoteEnv;
+                    break;
+                case ConstFile.NoteLen.HALF:
+                    env = halfNoteEnv;
+                    break;
+                case ConstFile.NoteLen.WHOLE:
+                    env = wholeNoteEnv;
+                    break;
+            }
+            if (env == null)
+            {
+                env = eighthNoteEnv;
+            }
+            IGATProcessedSample sample;
+            sample = sampleBank.GetProcessedSample(string.Format(ConstFile.PIANO_NOTES[2], 3), env);
+            sample.Play(0);
+        }
+        noteList[noteLen].Clear();
+    }
 
 
 	void StartPulse()
@@ -85,6 +362,7 @@ public class MusicManager : GameMono
 		sampleBank.LoadAll();
 	}
 
+
 	void SetupEnvelopes()
 	{
 		wholeNoteEnv = MusicUtil.CreateEnvelope(ConstFile.NoteLen.WHOLE);
@@ -94,34 +372,60 @@ public class MusicManager : GameMono
 		sixteenthNoteEnv = MusicUtil.CreateEnvelope(ConstFile.NoteLen.SIXTEENTH);
 	}
 
+	#region beat functions
+
 	void WholeBeat(int rep)
 	{
-
+		PlayChord(ConstFile.NoteLen.WHOLE, rep, wholeNoteEnv, ConstFile.PIANO_NOTES);
 	}
+
 
 	void HalfBeat(int rep)
 	{
-
+		PlayChord(ConstFile.NoteLen.HALF, rep, halfNoteEnv, ConstFile.PIANO_NOTES);
 	}
+
 
 	void QuarterBeat(int rep)
 	{
-		IGATProcessedSample sample;
-		string[] chordArray = MusicUtil.CreateMajorChord(majorProgression[rep], keyScale, ConstFile.PIANO_NOTES, majorChord);
-		for (int i = 0; i < chordArray.Length; i++)
-		{
-			sample = sampleBank.GetProcessedSample(chordArray[i], halfNoteEnv);
-			sample.Play(0);
-		}
+		PlayChord(ConstFile.NoteLen.QUARTER, rep, quarterNoteEnv, ConstFile.PIANO_NOTES);
 	}
+
 
 	void EighthBeat(int rep)
 	{
-
+		PlayChord(ConstFile.NoteLen.EIGHTH, rep, eighthNoteEnv, ConstFile.PIANO_NOTES);
 	}
+
 
 	void SixteenthBeat(int rep)
 	{
+		PlayChord(ConstFile.NoteLen.SIXTEENTH, rep, sixteenthNoteEnv, ConstFile.PIANO_NOTES);
+		if (rep == 15)
+		{
+            progressionInd = (progressionInd + 1) % progressions.Count;
+            this.currProgression = progressions[progressionInd];
+		}
+	}
 
+	#endregion
+
+
+	void PlayChord(ConstFile.NoteLen noteLen, int cnt, GATEnvelope env, string[] sampleArray)
+	{
+		for (int i = 0; i < progressions[progressionInd].prog.Length; i++)
+		{
+			if (progressions[progressionInd][i].PlayOn == noteLen && progressions[progressionInd][i].Counts[cnt])
+			{
+				IGATProcessedSample sample;
+				string[] chordArray = progressions[progressionInd][i].GetChord((int)key, keyScale, sampleArray);
+				for (int j = 0; j < chordArray.Length; j++)
+				{
+					sample = sampleBank.GetProcessedSample(chordArray[j], env);
+					sample.Play(0);
+				}
+				return;
+			}
+		}
 	}
 }

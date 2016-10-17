@@ -4,12 +4,38 @@ using System.Collections;
 [System.Serializable]
 public static class ConstFile
 {
+    public static bool DEBUG = false;
+
+    public static int SAMPLE_RATE = 44100;
+
+    public static ActionTime ACTION_CHOICE = ActionTime.DELAYED;
+
+
+    public enum ActionTime
+    {
+        IMMEDIATE,
+        DELAYED,
+    }
+
+    public enum Team
+    {
+        LEFT,
+        RIGHT,
+    }
+
 	public enum PuppetType
 	{
-		BASS,
-		TREBLE,
-		TOWER,
+		ROCK,
+        PAPER,
+        SCISSOR,
+        TOWER,
 	}
+
+    public enum BOOLEAN
+    {
+        GREATER_THAN,
+        LESS_THAN,
+    }
 
 	public enum Direction : int
 	{
@@ -67,7 +93,7 @@ public static class ConstFile
 
 	public static string[] ActionsText = new string[] { "Attack", "Move Forward", "Move to Enemy", "Move Back", "Rest" };
 
-	public static float BPM = 60;
+	public static float BPM = 30;
 	public enum NoteLen : int
 	{
 		WHOLE = 0,
@@ -75,12 +101,33 @@ public static class ConstFile
 		QUARTER = 2,
 		EIGHTH = 3,
 		SIXTEENTH = 4,
+		/*
 		DOTTED_QUARTER = 5,
 		DOTTED_EIGTH = 6,
 		DOTTED_SIXTEENTH = 7,
+		*/
 	}
 	// Based on data from http://bradthemad.org/guitar/tempo_explanation.php 
 	public static float[] NoteBPMCalcs = new float[] { 240, 120, 60, 30, 15, 90, 45, 22.5f};
+
+
+	public enum CHORD_TYPE
+	{
+		TRIAD,
+		SEVEN,
+	}
+
+	public enum ROMAN_NUMBERAL : int
+	{
+		I = 0,
+		II = 1,
+		III = 2,
+		IV = 3,
+		V = 4,
+		VI = 5,
+		VII = 6,
+	}
+
 
 	public enum NOTE : int
 	{

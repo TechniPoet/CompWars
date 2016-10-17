@@ -5,7 +5,6 @@ using System.Collections;
 /// <summary>
 /// Class for creating monobehavior singletons.
 /// Any new singletons should be added to MonoApplicationUtil.DestroyKnownSingletons.
-/// Most code taken from: https://gist.github.com/mlhamlin/ed99ec0d75d2a3f2d436
 /// </summary>
 public class UnitySingleton<T> : MonoBehaviour
 	where T : Component

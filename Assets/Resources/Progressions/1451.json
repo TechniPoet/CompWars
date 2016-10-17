@@ -1,0 +1,47 @@
+{
+    "progName": "1451",
+    "prog": [
+        {
+            "chordName": "",
+            "isOn": false,
+            "chordBase": 0,
+            "chordType": 0,
+            "playOn": 2,
+            "noteLen": 1,
+            "counts": [
+                1,
+                0,
+                0,
+                1
+            ]
+        },
+        {
+            "chordName": "",
+            "isOn": false,
+            "chordBase": 3,
+            "chordType": 0,
+            "playOn": 2,
+            "noteLen": 0,
+            "counts": [
+                0,
+                1,
+                0,
+                0
+            ]
+        },
+        {
+            "chordName": "",
+            "isOn": false,
+            "chordBase": 4,
+            "chordType": 0,
+            "playOn": 2,
+            "noteLen": 0,
+            "counts": [
+                0,
+                0,
+                1,
+                0
+            ]
+        }
+    ]
+}

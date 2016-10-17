@@ -1,0 +1,19 @@
+{
+    "progName": "1",
+    "prog": [
+        {
+            "chordName": "",
+            "isOn": false,
+            "chordBase": 0,
+            "chordType": 0,
+            "playOn": 2,
+            "noteLen": 1,
+            "counts": [
+                1,
+                0,
+                0,
+                0
+            ]
+        }
+    ]
+}
