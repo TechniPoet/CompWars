@@ -4,7 +4,7 @@ using System.Collections;
 [System.Serializable]
 public static class ConstFile
 {
-    public static bool DEBUG = true;
+    public static bool DEBUG = false;
 
     public static int SAMPLE_RATE = 44100;
 
